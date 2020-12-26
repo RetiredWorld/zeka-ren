@@ -38,8 +38,15 @@ const FriendsComments = (): JSX.Element => {
 };
 
 const FriendsIntro = () => {
-    return (<>
-    </>);
+    return (<div className="my-friends-desc">
+        <blockquote>
+            <h2>本站</h2>
+            <p>名称：Zeka 的记事本</p>
+            <p>链接：<a target="_blank" href="https://flag.zeka.cloud">https://flag.zeka.cloud</a></p>
+            <p>头像：<a target="_blank" href="https://flag.zeka.cloud/static/images/avatar.jpg">https://flag.zeka.cloud/static/images/avatar.jpg</a></p>
+            <p>描述：这个人很懒，什么都没有留下</p>
+        </blockquote>
+    </div>);
 }
 
 const Friends = ({data}: {data: IFriendsQuery}): JSX.Element =>{

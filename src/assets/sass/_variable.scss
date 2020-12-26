@@ -31,3 +31,10 @@ $font-size-small: .8rem;
       }
     }
 }
+
+%effect-blockquote {
+  margin: 0;
+  padding-left: 1rem;
+  color: $grey;
+  border-left: $secondary 2.5px solid;
+}

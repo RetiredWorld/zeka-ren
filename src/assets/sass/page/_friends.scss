@@ -5,6 +5,24 @@
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
 
+  &-desc {
+    margin-top: 2rem;
+    padding-left: 1.4rem;
+
+    h2 {
+      font-size: $font-size-huge;
+    }
+
+    a {
+      @extend %effect-a;
+    }
+
+    blockquote {
+      @extend %effect-blockquote;
+      padding-left: .2rem;
+    }
+  }
+
   &__item {
     display: flex;
     min-height: 5rem;
