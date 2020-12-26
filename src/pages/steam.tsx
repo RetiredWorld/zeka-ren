@@ -1,7 +1,8 @@
 import React from "react";
 
-import SEO from "../components/public/seo";
 import { Link } from "gatsby";
+
+import SEO from "../components/public/seo";
 import Header from "../components/public/header";
 
 const SteamPage = (): JSX.Element => {

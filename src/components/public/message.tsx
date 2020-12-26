@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import {func} from "prop-types";
 
 const Message  = (): JSX.Element => {
     function onClickClose() {

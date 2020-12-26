@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 
 import { graphql, StaticQuery } from 'gatsby'
+
 import {IAudioItem, IAudioQuery} from "../../types/query/audio";
 
 const ReactAplayer = React.lazy(() => {

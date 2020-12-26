@@ -1,7 +1,6 @@
 import React from "react";
 
 import { useRef, useState } from 'react'
-
 import { Link } from 'gatsby';
 
 export interface HeaderProp {

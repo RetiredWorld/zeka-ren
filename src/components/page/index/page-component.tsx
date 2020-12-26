@@ -1,13 +1,13 @@
 import React from "react";
 
-import { PhotoProvider, PhotoConsumer } from 'react-photo-view';
-import MyImage from "../../public/image";
-import { getPageUrl } from "../../../template/homepage";
 import { Link } from 'gatsby';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTag, faLink } from '@fortawesome/free-solid-svg-icons';
 import { IFrontMatter, IImage, NodeItem } from "../../../types/query/post";
+import { PhotoProvider, PhotoConsumer } from 'react-photo-view';
+
+import MyImage from "../../public/image";
+import { getPageUrl } from "../../../template/homepage";
 
 const PageHeader = ({frontmatter}: {
     frontmatter: IFrontMatter

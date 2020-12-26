@@ -1,7 +1,8 @@
 import React from "react";
 
-import PageComponent from "./page-component";
 import { Link } from "gatsby";
+
+import PageComponent from "./page-component";
 import { getPageUrl } from "../../../template/homepage";
 import {PostContextObj} from "../../../types/query/post";
 
