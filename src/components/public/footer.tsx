@@ -1,11 +1,14 @@
 import React from "react";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+
 const Footer = (): JSX.Element => {
 
     return <footer className="footer my-footer">
         <div className="content has-text-centered">
             <p>
-                Made with love by Zeka, 2020.
+                Made with <FontAwesomeIcon icon={faHeart} /> by Zeka, 2020.
                 <br />
                 Powered by <a href="https://www.gatsbyjs.com/">Gatsbyjs</a>
                 <br />

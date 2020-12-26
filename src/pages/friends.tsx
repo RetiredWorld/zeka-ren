@@ -37,11 +37,17 @@ const FriendsComments = (): JSX.Element => {
     </div>);
 };
 
+const FriendsIntro = () => {
+    return (<>
+    </>);
+}
+
 const Friends = ({data}: {data: IFriendsQuery}): JSX.Element =>{
     return (<>
         <SEO title="友链" />
         <Header title="友链" />
         <FriendsList friends={data.friendsJson.friends} />
+        <FriendsIntro />
         <FriendsComments />
     </>);
 };

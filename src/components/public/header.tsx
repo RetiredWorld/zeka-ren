@@ -2,6 +2,8 @@ import React from "react";
 
 import { useRef, useState } from 'react'
 
+import { Link } from 'gatsby';
+
 export interface HeaderProp {
     title: string
 }
@@ -20,10 +22,10 @@ const Header = (prop: HeaderProp): JSX.Element => {
     const [ percent ] = useState(yearPastPercent());
 
     return (<header className="my-header">
-        <h1 ref={headerRef} className="my-header-title" time-str={`今年已经虚度了 ${percent}%`} style={{
-            [ "--time-percent" as any]: percent / 100,
-        }}>Zeka 的记事本</h1>
-        <span className="my-header-sub">{prop.title}</span>
+            <h1 ref={headerRef} className="my-header-title" time-str={`今年已经虚度了 ${percent}%`} style={{
+                [ "--time-percent" as any]: percent / 100,
+            }}><Link className="my-header__link" to="/">Zeka 的记事本</Link></h1>
+            <span className="my-header-sub">{prop.title}</span>
     </header>);
 };
 

@@ -2,22 +2,33 @@ import React from "react";
 
 import { PhotoProvider, PhotoConsumer } from 'react-photo-view';
 import MyImage from "../../public/image";
+import { getPageUrl } from "../../../template/homepage";
+import { Link } from 'gatsby';
 
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTag, faLink } from '@fortawesome/free-solid-svg-icons';
-import {IFrontMatter, IImage, NodeItem} from "../../../types/query/post";
+import { IFrontMatter, IImage, NodeItem } from "../../../types/query/post";
 
 const PageHeader = ({frontmatter}: {
     frontmatter: IFrontMatter
 }): JSX.Element => {
     const [year, month, day] = frontmatter.date.split('-').map(str=>parseInt(str));
+    const url = getPageUrl({
+        year,
+        month,
+        hashId: frontmatter.title,
+    });
+
     const tags = frontmatter.tags;
+
     return (<>
+    <Link className="my-page-link" to={url}>
         <header className='my-page-header'>
             <div className='my-page-hashtag' id={frontmatter.title} />
             <FontAwesomeIcon className="my-page-header__icon" icon={faLink} />
             {frontmatter.title}
         </header>
+    </Link>
         <div className="my-page-sub is-clearfix">
             <span className="my-page-sub__item">在 {year} 年 {month} 月 {day} 日说：</span>
             {tags?tags.map((tag, index) => {

@@ -100,14 +100,16 @@ a {
   padding-bottom: 1.5rem;
   padding-top: 1.5rem;
   color: $grey;
+  font-size: $font-size-small;
+  background-color: inherit;
 
   a {
     @extend %effect-a;
   }
 
-
-  font-size: $font-size-small;
-  background-color: inherit;
+  svg {
+    font-size: 85%;
+  }
 }
 
 .aplayer {

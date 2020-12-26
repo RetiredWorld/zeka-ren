@@ -12,9 +12,13 @@
   flex: 1;
 }
 
+.my-page-link {
+  color: inherit;
+}
+
 .my-page-header {
   position: relative;
-  font-size: $font-size-large;
+  font-size: $font-size-large * 1.05;
   font-weight: bold;
   border-left: 3.5px solid $primary;
   padding-left: .5rem;
@@ -25,19 +29,15 @@
     position: absolute;
     font-size: $font-size-huge;
     transition: opacity .3s;
-    opacity: 1;
+    opacity: 0;
     color: $grey;
     top: .18rem;
     left: -2rem;
-
-    @include mobile(){
-      display: none;
-    }
   }
 
   &:hover {
     .my-page-header__icon {
-      opacity: 0;
+      opacity: 1;
     }
   }
 }
@@ -82,6 +82,7 @@
     cursor: pointer;
     height: 13rem;
     width: 100%;
+    background-color: $grey-lighter;
   }
 
   &__single {

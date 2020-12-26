@@ -23,6 +23,7 @@
       animation: fade-in-and-out 6s infinite linear;
       left: 50%;
       transform: translateX(-50%);
+      box-shadow: 0 0 10px 10px #f6f6f6 inset;
       padding-left: .2rem;
       padding-right: .2rem;
       opacity: 1;
@@ -51,6 +52,8 @@
 
 
     @include mobile() {
+      font-size: $font-size-gig;
+
       &::before {
         opacity: 0;
         animation: none;
@@ -73,8 +76,13 @@
     line-height: $font-size-huge;
 
     @include mobile() {
-      margin-right: 1rem;
+      top: 12px;
+      margin-right: 0.5rem;
     }
+  }
+
+  &__link {
+    color: inherit;
   }
 }
 

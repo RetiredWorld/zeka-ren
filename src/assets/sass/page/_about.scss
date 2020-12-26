@@ -4,6 +4,8 @@
 
   h1 {
     font-size: $font-size-huge;
+    font-weight: bold;
+    color: $primary;
     margin-bottom: .1rem;
 
     &:not(:first-child) {

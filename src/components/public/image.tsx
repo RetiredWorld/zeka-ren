@@ -16,9 +16,16 @@ const MyImage = (prop: IMyImage): JSX.Element => {
     useEffect(()=>{
         const imageIo = new IntersectionObserver(entries=>{
             const [ imageEntry ] = entries;
+            const ele = imageEle.current;
             if (imageEntry.isIntersecting) {
-                imageEle.current.srcset = prop.srcSet;
-                imageEle.current.classList.add('my-lazy-image__active')
+                ele.srcset = prop.srcSet;
+
+                const loadHandler = () => {
+                    ele.classList.add('my-lazy-image__active');
+                    ele.removeEventListener('load', loadHandler);
+                };
+
+                ele.addEventListener('load', loadHandler);
                 imageIo.disconnect();
             }
         });
