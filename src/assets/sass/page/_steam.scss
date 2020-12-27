@@ -1,0 +1,59 @@
+@import "../variable";
+
+.my-steam__intro {
+  font-size: $font-size-huge;
+  color: $primary;
+  font-weight: bold;
+  margin-bottom: .6rem;
+  margin-top: 1.4rem;
+  text-align: center;
+
+  &:first-child {
+    margin-top: .1rem;
+  }
+}
+
+.my-steam-part {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill,minmax(16rem,1fr));
+}
+
+
+.my-steam-cp {
+  margin: 0 auto;
+  width: 80%;
+  margin-bottom: 1rem;
+}
+
+.my-steam-logo {
+  height: 8rem;
+  width: 100%;
+
+  img {
+    border-radius: .5rem .5rem 0 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.my-steam-info {
+  margin-top: .3rem;
+  margin-bottom: .5rem;
+  padding: 0 1rem;
+  text-align: center;
+
+  h2 {
+    font-size: $font-size-huge;
+  }
+
+  a {
+    @extend %effect-a;
+  }
+
+  p {
+    margin-top: .1rem;
+    color: $grey;
+  }
+}
