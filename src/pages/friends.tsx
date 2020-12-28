@@ -7,7 +7,7 @@ import Header from "../components/public/header";
 
 import {graphql} from "gatsby";
 
-const FriendsList = ({friends}: {friends: IFriendSingle[]}): JSX.Element => {
+const FriendsList: React.FC<{friends: IFriendSingle[]}> = ({friends}) => {
     return (<div className="my-friends">
         {friends.map((friend, index) => {
             return (<a key={`${friend.name}_${index}`} href={friend.website}>
@@ -25,7 +25,7 @@ const FriendsList = ({friends}: {friends: IFriendSingle[]}): JSX.Element => {
     </div>);
 };
 
-const FriendsComments = (): JSX.Element => {
+const FriendsComments: React.FC = () => {
     useEffect(()=> {
         import("../vendors/disqus").then((module)=> {
             module.default()
@@ -37,7 +37,7 @@ const FriendsComments = (): JSX.Element => {
     </div>);
 };
 
-const FriendsIntro = () => {
+const FriendsIntro: React.FC = () => {
     return (<div className="my-friends-desc">
         <blockquote>
             <h2>本站</h2>
@@ -49,7 +49,7 @@ const FriendsIntro = () => {
     </div>);
 }
 
-const Friends = ({data}: {data: IFriendsQuery}): JSX.Element =>{
+const Friends: React.FC<{data: IFriendsQuery}> = ({data}) =>{
     return (<>
         <SEO title="友链" />
         <Header title="友链" />

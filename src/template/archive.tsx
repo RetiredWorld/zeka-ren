@@ -101,7 +101,12 @@ class SortDate implements ISortDate {
     }
 }
 
-const ArchiveDay = ({ myDate, myKey, month, year }: { myDate: ISortedItemDay, myKey: string, month: number | string, year: string | number }): JSX.Element => {
+const ArchiveDay: React.FC<{
+    myDate: ISortedItemDay,
+    myKey: string,
+    month: number | string,
+    year: string | number
+}> = ({ myDate, myKey, month, year }) => {
     return (<>
         { myDate.order.map(day => {
             const date = `${parseStr(month)}-${parseStr(day)}`
@@ -117,7 +122,7 @@ const ArchiveDay = ({ myDate, myKey, month, year }: { myDate: ISortedItemDay, my
     </>);
 }
 
-const ArchiveMonth = ({ myDate, myKey, year }: { myDate: ISortedItemMonth, myKey: string, year: string | number }): JSX.Element => {
+const ArchiveMonth: React.FC<{ myDate: ISortedItemMonth, myKey: string, year: string | number }> = ({ myDate, myKey, year }) => {
     return (<>
         { myDate.order.map(month => {
             let num = 0;
@@ -135,7 +140,7 @@ const ArchiveMonth = ({ myDate, myKey, year }: { myDate: ISortedItemMonth, myKey
     </>)
 };
 
-const ArchiveYear = ({ myDate }: {myDate: ISortedItemYear }): JSX.Element => {
+const ArchiveYear: React.FC<{myDate: ISortedItemYear }> = ({ myDate }) => {
 
     return (<>
         { myDate.order.map(year=>{
@@ -148,7 +153,7 @@ const ArchiveYear = ({ myDate }: {myDate: ISortedItemYear }): JSX.Element => {
     </>);
 };
 
-const Archive = ({ pageContext }: ArchiveContext): JSX.Element => {
+const Archive: React.FC<ArchiveContext> = ({ pageContext }) => {
     const sortObj = new SortDate(pageContext.data.allMarkdownRemark.edges);
     const sortedDate = sortObj.process();
 

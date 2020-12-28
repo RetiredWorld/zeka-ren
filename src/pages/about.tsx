@@ -10,9 +10,9 @@ interface IAboutProps {
     }
 }
 
-const AboutContent = ({ content }:{
+const AboutContent: React.FC<{
     content: string
-}): JSX.Element => {
+}> = ({ content }) => {
 
     return (<div className="my-about-wrap" dangerouslySetInnerHTML={{
         __html: content,
@@ -20,9 +20,9 @@ const AboutContent = ({ content }:{
     </div>);
 };
 
-const About = ({ data }:{
+const About: React.FC<{
     data: IAboutProps
-}): JSX.Element => {
+}> = ({ data }) => {
     return (<>
         <SEO title="关于" />
         <Header title="关于" />

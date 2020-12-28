@@ -1,4 +1,5 @@
 import {BaseContext, BaseMarkdownRemark} from "./base";
+import Layout from "../../layout/layout";
 
 export interface IImage {
     alt: string | null,

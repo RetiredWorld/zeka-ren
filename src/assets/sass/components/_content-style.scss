@@ -41,6 +41,20 @@
     }
   }
 
+  del {
+    margin: 0 .1rem;
+    color: transparent;
+    text-decoration: none;
+    background: $grey;
+    transition: .3s;
+    border-radius: .1rem;
+
+    &:hover {
+      color: inherit;
+      background: inherit;
+    }
+  }
+
   @include mobile() {
     iframe {
       height: 250px;

@@ -8,9 +8,10 @@ import Nav from "../components/public/nav";
 import Footer from "../components/public/footer";
 import Message from "../components/public/message";
 
-const Layout = ({ children }): JSX.Element => {
+const Layout: React.FC = ({ children }): JSX.Element => {
+
     return (<div className="my-layout">
-        <SEO title="" />
+        <SEO title='' />
         <Background />
         <Nav />
         <div className="container">
