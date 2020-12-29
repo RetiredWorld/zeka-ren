@@ -5,9 +5,9 @@ require('react-photo-view/dist/index.css');
 require('disqusjs/dist/disqusjs.css');
 require('../assets/sass/main.scss');
 
-import { InfoProvider } from "../layout/context";
+import Empty from "../template/empty"
 
-export const wrapRootElement = InfoProvider;
+export const wrapPageElement = Empty;
 
 // trigger an immediate page refresh when an update is found
 export const onServiceWorkerUpdateReady = () => {

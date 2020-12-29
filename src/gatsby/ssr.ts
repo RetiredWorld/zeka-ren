@@ -1,3 +1,3 @@
-import { InfoProvider } from "../layout/context";
+import Empty from "../template/empty"
 
-export const wrapRootElement = InfoProvider;
+export const wrapPageElement = Empty;
