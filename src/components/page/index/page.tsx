@@ -6,10 +6,10 @@ import PageComponent from "./page-component";
 import { getPageUrl } from "../../../template/homepage";
 import {PostContextObj} from "../../../types/query/post";
 
-const PagePaginator = ({data, direction}: {
+const PagePaginator: React.FC<{
     data: PostContextObj,
     direction?: 'top' | 'bottom'
-}): JSX.Element => {
+}> = ({data, direction}) => {
     let prevEle = (<div className="my-pager__prev hide" >« 上个月</div>);
     if (data.prev !== null) {
         const [ year, month ] = data.prev.split('-');
@@ -36,14 +36,14 @@ const PagePaginator = ({data, direction}: {
     </div>);
 };
 
-const Page = ({
+const Page: React.FC<{data: PostContextObj}> = ({
     data
-}: {data: PostContextObj}): JSX.Element => {
+}) => {
     const posts = data.data.nodes
     return (<div className="my-page-wrap">
         <PagePaginator data={data} direction='top'/>
         {posts.map((post, index) => {
-            return (<PageComponent key={`${post.frontmatter.date}_${index}`} data={post} />);
+            return (<PageComponent key={`${post.childMarkdownRemark.frontmatter.date}_${index}`} data={post} />);
         })}
         <PagePaginator data={data} direction={'bottom'} />
     </div>);

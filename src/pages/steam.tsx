@@ -24,7 +24,7 @@ const initData: ISteamData = {
     }
 };
 
-const SteamPage = (): JSX.Element => {
+const SteamPage: React.FC = () => {
 
     const [ data, setData ] = useState<ISteamData>(initData);
     const [ recentData, recentSetData ] = useState<ISteamData>(initData);

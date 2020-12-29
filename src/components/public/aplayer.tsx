@@ -9,7 +9,7 @@ const ReactAplayer = React.lazy(() => {
 }
 );
 
-const MyAplayer = ({ audio }: {audio: IAudioItem[]}): JSX.Element => {
+const MyAplayer: React.FC<{audio: IAudioItem[]}> = ({ audio }) => {
 
     const onInit = () => {
         (document.querySelector('.aplayer-info') as HTMLElement).style.display = "inherit"
@@ -28,7 +28,7 @@ const MyAplayer = ({ audio }: {audio: IAudioItem[]}): JSX.Element => {
         />);
 };
 
-const APlayer = (): JSX.Element => {
+const APlayer: React.FC = () => {
 
     // @ts-ignore
     return (<StaticQuery query={graphql`query AudioAll {

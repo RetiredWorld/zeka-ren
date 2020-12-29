@@ -21,8 +21,10 @@ export interface IFrontMatter {
 }
 
 export interface NodeItem {
-    frontmatter: IFrontMatter,
-    html: string
+    childMarkdownRemark: {
+        frontmatter: IFrontMatter,
+        html: string
+    }
 }
 
 export interface GroupItem {
@@ -30,8 +32,8 @@ export interface GroupItem {
     yearMonth: string
 }
 
-export interface PostQuery extends BaseMarkdownRemark {
-    allMarkdownRemark: {
+export interface PostQuery{
+    allFile: {
         group: GroupItem[]
     }
 }

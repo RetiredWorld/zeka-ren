@@ -14,7 +14,7 @@ export function getPageUrl({year, month, hashId}: {year: number | string, month:
     return myUrl;
 }
 
-const IndexPage = ({ pageContext }: PostContext): JSX.Element => {
+const IndexPage: React.FC<PostContext> = ({ pageContext })=> {
     const  { data } = pageContext;
     const [ year, month ] = data.yearMonth.split('-');
     return (<>

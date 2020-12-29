@@ -5,7 +5,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faHome, faLink, faArchive, faCat, faWifi } from '@fortawesome/free-solid-svg-icons'
 import { faSteam } from "@fortawesome/free-brands-svg-icons"
 
-const Nav = (): JSX.Element => {
+const Nav: React.FC = () => {
 
     return (<nav className="my-nav">
             <input id="menu" name="menu" type="checkbox" className="my-nav-toggle" />

@@ -35,7 +35,7 @@ const num2time = (numTime: string | number): ITime => {
     return myTime;
 }
 
-const SteamComponent = ({appId, name, time, recentTime = null}: ISteamComponentProp): JSX.Element => {
+const SteamComponent: React.FC<ISteamComponentProp> = ({appId, name, time, recentTime = null}) => {
 
     const myTime = num2time(time);
     const myRecentTime = num2time(recentTime);

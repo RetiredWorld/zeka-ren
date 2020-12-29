@@ -7,7 +7,7 @@ import Header from "../components/public/header";
 
 import {graphql} from "gatsby";
 
-const FriendsList = ({friends}: {friends: IFriendSingle[]}): JSX.Element => {
+const FriendsList: React.FC<{friends: IFriendSingle[]}> = ({friends}) => {
     return (<div className="my-friends">
         {friends.map((friend, index) => {
             return (<a key={`${friend.name}_${index}`} href={friend.website}>
@@ -25,7 +25,7 @@ const FriendsList = ({friends}: {friends: IFriendSingle[]}): JSX.Element => {
     </div>);
 };
 
-const FriendsComments = (): JSX.Element => {
+const FriendsComments: React.FC = () => {
     useEffect(()=> {
         import("../vendors/disqus").then((module)=> {
             module.default()

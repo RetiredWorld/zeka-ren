@@ -3,7 +3,7 @@ import React from "react";
 import SEO from "../components/public/seo";
 import Header from "../components/public/header";
 
-const Empty = (): JSX.Element => {
+const Empty: React.FC = () => {
 
     return (<>
         <SEO title={''} />

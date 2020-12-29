@@ -5,14 +5,16 @@ import SEO from "../components/public/seo";
 import Header from "../components/public/header";
 
 interface IAboutProps {
-    markdownRemark: {
-        html: string
+    file: {
+        childMarkdownRemark: {
+            html: string
+        }
     }
 }
 
-const AboutContent = ({ content }:{
+const AboutContent: React.FC<{
     content: string
-}): JSX.Element => {
+}> = ({ content }) => {
 
     return (<div className="my-about-wrap" dangerouslySetInnerHTML={{
         __html: content,
@@ -20,21 +22,22 @@ const AboutContent = ({ content }:{
     </div>);
 };
 
-const About = ({ data }:{
+const About: React.FC<{
     data: IAboutProps
-}): JSX.Element => {
+}> = ({ data }) => {
     return (<>
         <SEO title="关于" />
         <Header title="关于" />
-        <AboutContent content={data.markdownRemark.html}/>
+        <AboutContent content={data.file.childMarkdownRemark.html}/>
     </>);
 };
 
 export default About;
 
 export const AboutQuery = graphql`query About {
-  markdownRemark(frontmatter: {title: {eq: "about.md"}}) {
-    html
+  file(sourceInstanceName: {eq: "about"}) {
+    childMarkdownRemark {
+      html
+    }
   }
-}
-`;
+}`;

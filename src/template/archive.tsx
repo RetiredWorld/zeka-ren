@@ -2,7 +2,7 @@ import React from "react";
 
 import {
     ArchiveContext,
-    EdgeItem,
+    NodeItem,
     ISortDate, ISortedItemBase, ISortedItemDay, ISortedItemMonth, ISortedItems, ISortedItemYear,
     ParseDateRes
 } from "../types/query/archive";
@@ -28,7 +28,7 @@ class SortDate implements ISortDate {
         order: [],
     };
 
-    constructor(data:  EdgeItem[] ) {
+    constructor(data:  NodeItem[] ) {
         this.unsortedDate = data;
     }
 
@@ -52,8 +52,8 @@ class SortDate implements ISortDate {
         const a: ISortedItems = this.sortedDate;
         const mySort = SortDate.sortItem;
 
-        this.unsortedDate.forEach((item: EdgeItem)=>{
-            const frontmatter = item.node.frontmatter
+        this.unsortedDate.forEach((item: NodeItem)=>{
+            const frontmatter = item.childMarkdownRemark.frontmatter;
             const postTime = this.parseDate(frontmatter.date);
             frontmatter.date = parseStr(frontmatter.date);
 
@@ -149,7 +149,7 @@ const ArchiveYear = ({ myDate }: {myDate: ISortedItemYear }): JSX.Element => {
 };
 
 const Archive = ({ pageContext }: ArchiveContext): JSX.Element => {
-    const sortObj = new SortDate(pageContext.data.allMarkdownRemark.edges);
+    const sortObj = new SortDate(pageContext.data.allFile.nodes);
     const sortedDate = sortObj.process();
 
     return (<>

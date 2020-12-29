@@ -9,7 +9,7 @@ const emptyTemplate = path.join(rootDir, 'src/template/empty.tsx');
 
 const sortAll = (res: PostQuery): PostQuery => {
     sortYearMonth(res);
-    res.allMarkdownRemark.group.forEach(groupItem => {
+    res.allFile.group.forEach(groupItem => {
         sortDay(groupItem.nodes);
     })
     return res
@@ -17,7 +17,7 @@ const sortAll = (res: PostQuery): PostQuery => {
 
 
 const sortYearMonth = (res: PostQuery): PostQuery => {
-    res.allMarkdownRemark.group.sort((a, b)=> {
+    res.allFile.group.sort((a, b)=> {
         const [ aYear, aMonth ] = a.yearMonth.split('-').map(item=>parseInt(item));
         const [ bYear, bMonth ] = b.yearMonth.split('-').map(item=>parseInt(item));
 
@@ -34,8 +34,8 @@ const sortYearMonth = (res: PostQuery): PostQuery => {
 
 const sortDay = (nodes: NodeItem[]): NodeItem[] => {
     nodes.sort((a, b) => {
-        const aDay = a.frontmatter.date.split('-')[2].toString();
-        const bDay = b.frontmatter.date.split('-')[2].toString();
+        const aDay = a.childMarkdownRemark.frontmatter.date.split('-')[2].toString();
+        const bDay = b.childMarkdownRemark.frontmatter.date.split('-')[2].toString();
 
         if (aDay > bDay) {
             return -1
@@ -49,7 +49,7 @@ export default function createHomepage(res: PostQuery, actions: Actions) {
     sortAll(res);
 
     let createdHomepage = false;
-    const group = res.allMarkdownRemark.group;
+    const group = res.allFile.group;
     group.forEach((posts, index)=>{
         const [ year, month ] = posts.yearMonth.split('-');
         let prev: string | null = null;

@@ -10,7 +10,7 @@ export interface IMyImage {
     thumbnail?: string
 }
 
-const MyImage = (prop: IMyImage): JSX.Element => {
+const MyImage: React.FC<IMyImage> = (prop) => {
 
     const imageEle = useRef<HTMLImageElement>(null);
     useEffect(()=>{

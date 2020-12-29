@@ -130,9 +130,9 @@ const PageComponent = ({data}: {
 }): JSX.Element => {
 
     return (<section className="my-page-component">
-        <PageHeader frontmatter={data.frontmatter} />
-        <PageContent content={data.html} />
-        <PageMedia frontmatter={data.frontmatter} />
+        <PageHeader frontmatter={data.childMarkdownRemark.frontmatter} />
+        <PageContent content={data.childMarkdownRemark.html} />
+        <PageMedia frontmatter={data.childMarkdownRemark.frontmatter} />
     </section>);
 };
 
