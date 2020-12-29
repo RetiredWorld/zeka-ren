@@ -1,6 +1,6 @@
 import React from "react";
 
-const Index = (): JSX.Element => {
+const Index: React.FC = () => {
     return (<div className="my-lister">
         <ul className="my-lister-wrap">
             <li>dsa</li>

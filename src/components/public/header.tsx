@@ -16,7 +16,7 @@ function yearPastPercent(): number{
     return Math.ceil(pDay/tDay*10000)/100;
 }
 
-const Header = (prop: HeaderProp): JSX.Element => {
+const Header: React.FC<HeaderProp> = (prop) => {
     const headerRef = useRef<HTMLHeadingElement>(null);
     const [ percent ] = useState(yearPastPercent());
 

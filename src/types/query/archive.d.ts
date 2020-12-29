@@ -5,15 +5,15 @@ export interface ArchiveItem {
     title: string
 }
 
-interface EdgeItem {
-    node: {
+interface NodeItem {
+    childMarkdownRemark: {
         frontmatter: ArchiveItem;
     }
 }
 
-export interface ArchiveQuery extends BaseMarkdownRemark {
-    allMarkdownRemark: {
-        edges: EdgeItem[];
+export interface ArchiveQuery {
+    allFile: {
+        nodes: NodeItem[];
     }
 }
 
@@ -52,7 +52,7 @@ interface ISortedItemDay extends ISortedItemBase {
 export interface ISortedItems extends ISortedItemYear{}
 
 export interface ISortDate {
-    unsortedDate: EdgeItem[];
+    unsortedDate: NodeItem[];
     sortedDate: ISortedItems;
 
     process(): ISortedItems;

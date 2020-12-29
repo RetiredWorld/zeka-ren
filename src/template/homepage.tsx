@@ -14,14 +14,14 @@ export function getPageUrl({year, month, hashId}: {year: number | string, month:
     return myUrl;
 }
 
-const IndexPage: React.FC<PostContext> = (props) => {
-    const  { data } = props.pageContext;
+
+const IndexPage: React.FC<PostContext> = ({ pageContext })=> {
+    const  { data } = pageContext;
     const [ year, month ] = data.yearMonth.split('-');
-    console.log(props)
     return (<>
         <SEO title={`${year} 年 ${month} 月`}/>
         <Header title={`${year} 年 ${month} 月`} />
-        <Page data={props.pageContext} />
+        <Page data={pageContext} />
     </>);
 };
 

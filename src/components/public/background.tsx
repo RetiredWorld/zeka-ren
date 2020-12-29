@@ -1,6 +1,6 @@
 import React from "react";
 
-const Background = (): JSX.Element => {
+const Background: React.FC = () => {
     return <div className="my-background" />;
 };
 

@@ -5,8 +5,10 @@ import SEO from "../components/public/seo";
 import Header from "../components/public/header";
 
 interface IAboutProps {
-    markdownRemark: {
-        html: string
+    file: {
+        childMarkdownRemark: {
+            html: string
+        }
     }
 }
 
@@ -26,15 +28,16 @@ const About: React.FC<{
     return (<>
         <SEO title="关于" />
         <Header title="关于" />
-        <AboutContent content={data.markdownRemark.html}/>
+        <AboutContent content={data.file.childMarkdownRemark.html}/>
     </>);
 };
 
 export default About;
 
 export const AboutQuery = graphql`query About {
-  markdownRemark(frontmatter: {title: {eq: "about.md"}}) {
-    html
+  file(sourceInstanceName: {eq: "about"}) {
+    childMarkdownRemark {
+      html
+    }
   }
-}
-`;
+}`;

@@ -3,7 +3,7 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
-const Footer = (): JSX.Element => {
+const Footer: React.FC = () => {
 
     return <footer className="footer my-footer">
         <div className="content has-text-centered">

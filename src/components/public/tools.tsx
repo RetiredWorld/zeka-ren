@@ -20,7 +20,7 @@ function getPercent() {
     return Math.round(scrollPercent * 100);
 }
 
-const Tools = (): JSX.Element => {
+const Tools: React.FC = () => {
 
     const [ isActive, setIsActive ] = useState(false);
     const [ percent, setPercent ] = useState(0);

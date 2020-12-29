@@ -6,11 +6,10 @@ import createArchive from './create-archive';
 import createHomepage from "./create-homepage";
 
 const myCreatePages = async ({actions, graphql, reporter}: CreatePagesArgs) => {
-    const archiveResult = await graphql(`
-    query ArchiveDataQuery {
-  allMarkdownRemark(sort: {fields: [frontmatter___date, frontmatter___title], order: DESC}, filter: {frontmatter: {title: {ne: "about.md"}}}) {
-    edges {
-      node {
+    const archiveResult = await graphql(`query ArchiveQuery {
+  allFile(sort: {fields: [childMarkdownRemark___frontmatter___date, childMarkdownRemark___frontmatter___date], order: DESC}, filter: {extension: {eq: "md"}, sourceInstanceName: {eq: "diary"}}) {
+    nodes {
+      childMarkdownRemark {
         frontmatter {
           title
           date
@@ -18,8 +17,7 @@ const myCreatePages = async ({actions, graphql, reporter}: CreatePagesArgs) => {
       }
     }
   }
-}
-    `);
+}`);
 
     if (archiveResult.errors) {
         reporter.panicOnBuild(`Error while running archive query.`);
@@ -29,33 +27,37 @@ const myCreatePages = async ({actions, graphql, reporter}: CreatePagesArgs) => {
     createArchive(archiveResult.data as ArchiveQuery, actions);
 
     const postResult = await graphql(`query DiaryAll {
-  allMarkdownRemark(sort: {fields: [frontmatter___date, frontmatter___title], order: DESC}, filter: {frontmatter: {title: {ne: "about.md"}}}) {
-    group(field: fields___year_month) {
+  allFile(filter: {sourceInstanceName: {eq: "diary"}, extension: {eq: "md"}}, sort: {fields: [childMarkdownRemark___frontmatter___date, childMarkdownRemark___frontmatter___title], order: DESC}) {
+    group(field: childMarkdownRemark___fields___year_month) {
       nodes {
-        frontmatter {
-          date
-          images {
-            alt
-            src {
-              image: childImageSharp {
-                fluid(jpegQuality: 80, jpegProgressive: true, toFormat: JPG, maxWidth: 1400) {
-                  aspectRatio
-                  src
-                  srcSet
+        childMarkdownRemark {
+          frontmatter {
+            date
+            images {
+              alt
+              src {
+                image: childImageSharp {
+                  fluid(jpegQuality: 80, jpegProgressive: true, toFormat: JPG, maxWidth: 1400) {
+                    aspectRatio
+                    src
+                    srcSet
+                  }
                 }
               }
             }
+            tags
+            title
           }
-          tags
-          title
-        }
-        html
+          html
+        }       
       }
       yearMonth: fieldValue
+
     }
   }
 }
-    `);
+
+`);
 
     if (postResult.errors) {
         reporter.panicOnBuild(`Error while running post query.`);

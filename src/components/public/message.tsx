@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-const Message  = (): JSX.Element => {
+const Message: React.FC  = () => {
     function onClickClose() {
         ref.current.classList.add('is-invisible')
     }
