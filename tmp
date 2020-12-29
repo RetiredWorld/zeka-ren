@@ -1,0 +1,7 @@
+http://api.steampowered.com/IPlayerService/GetOwnedGames/v1/?key=36333B64A41EC6485B84E2BD0C2512BE&steamid=76561198899850098&include_appinfo=1
+
+
+https://developer.valvesoftware.com/wiki/Steam_Web_API#GetUserStatsForGame_.28v0002.29
+
+logo image
+http://media.steampowered.com/steamcommunity/public/images/apps/211820/38652d0a34354f77e37073aeb5e8e9619d2c5308.jpg
