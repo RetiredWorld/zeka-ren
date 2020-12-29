@@ -1,15 +1,13 @@
 import React from "react";
 
-import SEO from "../components/public/seo";
+import Empty from "../template/empty";
+
 import { Link } from "gatsby";
-import Header from "../components/public/header";
 
 const NotFoundPage: React.FC = () => {
-    return (<>
-        <SEO title="页面未找到" />
-        <Header title="404" />
+    return (<Empty title="404" navTitle="页面未找到">
         <Link to="/">返回首页</Link>
-    </>);
+    </Empty>);
 };
 
 export default NotFoundPage

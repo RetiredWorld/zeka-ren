@@ -1,14 +1,23 @@
 import React from "react";
 
-import SEO from "../components/public/seo";
-import Header from "../components/public/header";
+import InfoConsumer, { IInfoContext } from "../layout/context";
 
-const Empty: React.FC = () => {
+export interface IEmptyPage extends IInfoContext {
 
-    return (<>
-        <SEO title={''} />
-        <Header title="空白" />
-    </>);
+}
+
+export const Empty: React.FC<IEmptyPage> = (props) => {
+
+    return (<InfoConsumer>
+        {context => {
+            context.setInfo({
+                title: props.title,
+                navTitle: props.navTitle,
+                description: props.description,
+            });
+            return (<>{props.children}</>);
+        }}
+    </InfoConsumer>);
 };
 
 export default Empty;

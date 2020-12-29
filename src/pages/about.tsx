@@ -1,8 +1,7 @@
 import React from "react";
 import { graphql } from 'gatsby';
 
-import SEO from "../components/public/seo";
-import Header from "../components/public/header";
+import Empty from "../template/empty";
 
 interface IAboutProps {
     file: {
@@ -25,11 +24,9 @@ const AboutContent: React.FC<{
 const About: React.FC<{
     data: IAboutProps
 }> = ({ data }) => {
-    return (<>
-        <SEO title="关于" />
-        <Header title="关于" />
-        <AboutContent content={data.file.childMarkdownRemark.html}/>
-    </>);
+    return (<Empty title="关于" navTitle="关于">
+        (<AboutContent content={data.file.childMarkdownRemark.html}/>);
+    </Empty>);
 };
 
 export default About;
