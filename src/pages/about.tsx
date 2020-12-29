@@ -25,7 +25,7 @@ const About: React.FC<{
     data: IAboutProps
 }> = ({ data }) => {
     return (<Empty title="关于" navTitle="关于">
-        (<AboutContent content={data.file.childMarkdownRemark.html}/>);
+        <AboutContent content={data.file.childMarkdownRemark.html}/>
     </Empty>);
 };
 

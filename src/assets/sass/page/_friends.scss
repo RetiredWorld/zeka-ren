@@ -8,6 +8,8 @@
   &-desc {
     margin-top: 2rem;
     padding-left: 1.4rem;
+    overflow: hidden;
+    word-break: break-all;
 
     h2 {
       font-size: $font-size-huge;
@@ -20,6 +22,10 @@
     blockquote {
       @extend %effect-blockquote;
       padding-left: .2rem;
+    }
+
+    @include mobile() {
+      padding-left: .3rem;
     }
   }
 
