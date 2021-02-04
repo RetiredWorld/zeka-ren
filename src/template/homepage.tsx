@@ -1,8 +1,10 @@
 import React from "react";
 
-import { PostContext } from "../types/query/post";
+import { PostContext, PostQuery } from "../types/query/post"
 
 import Empty from "./empty";
+import Header from "../components/public/header";
+import SEO from "../components/public/seo";
 import Page from "../components/page/index/page";
 
 export function getPageUrl({year, month, hashId}: {year: number | string, month: number | string, hashId?:string}): string {
@@ -17,9 +19,16 @@ export function getPageUrl({year, month, hashId}: {year: number | string, month:
 const IndexPage: React.FC<PostContext> = ({ pageContext })=> {
     const  { data } = pageContext;
     const [ year, month ] = data.yearMonth.split('-');
-    return (<Empty title={`${year} 年 ${month} 月`} navTitle={`${year} 年 ${month} 月`}>
+    const dateStr = `${year} 年 ${month} 月`;
+
+    data.nodes.forEach(it=>{
+        console.log(it.childMarkdownRemark.frontmatter.date)
+    })
+    return (<>
+        <SEO title={dateStr} />
+        <Header title={dateStr} />
         <Page data={pageContext} />
-    </Empty>);
+    </>);
 };
 
 export default IndexPage;

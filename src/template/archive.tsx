@@ -8,6 +8,8 @@ import {
 } from "../types/query/archive";
 
 import Empty from "./empty";
+import SEO from "../components/public/seo";
+import Header from "../components/public/header";
 import { Link } from "gatsby";
 
 import { getPageUrl } from "./homepage";
@@ -156,11 +158,13 @@ const Archive: React.FC<ArchiveContext> = ({ pageContext }) => {
     const sortObj = new SortDate(pageContext.data.allFile.nodes);
     const sortedDate = sortObj.process();
 
-    return (<Empty title="归档" navTitle="归档">
+    return (<>
+        <SEO title="归档"/>
+        <Header title="归档" />
         <div className="archive-wrap">
             <ArchiveYear myDate={sortedDate} />
         </div>
-    </Empty>);
+    </>);
 };
 
 export default Archive;

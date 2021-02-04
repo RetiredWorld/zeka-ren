@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import { useRef, useState } from 'react'
 import { Link } from 'gatsby';
@@ -16,7 +16,7 @@ function yearPastPercent(): number{
     return Math.ceil(pDay/tDay*10000)/100;
 }
 
-const Header: React.FC<HeaderProp> = (prop) => {
+const Header: React.FC<HeaderProp> = React.memo<HeaderProp>((prop) => {
     const headerRef = useRef<HTMLHeadingElement>(null);
     const [ percent ] = useState(yearPastPercent());
 
@@ -26,6 +26,6 @@ const Header: React.FC<HeaderProp> = (prop) => {
             }}><Link className="my-header__link" to="/">Zeka 的记事本</Link></h1>
             <span className="my-header-sub">{prop.title}</span>
     </header>);
-};
+});
 
 export default Header;

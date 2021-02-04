@@ -66,7 +66,7 @@ const SteamComponent: React.FC<ISteamComponentProp> = ({appId, name, time, recen
                     <img src={ imgSrc } alt={ appId.toString() } />
                 </div>
                 <div className="my-steam-info">
-                    <h2><a href="">{ name }</a></h2>
+                    <h2>{ name }</h2>
                     {recentTimer}
                     {timer}
                 </div>

@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 
 import {IFriendSingle, IFriendsQuery} from "../types/query/friends";
 
-import Empty from "../template/empty";
+import Header from "../components/public/header";
+import SEO from "../components/public/seo";
 
 import {graphql} from "gatsby";
 
@@ -49,12 +50,13 @@ const FriendsIntro: React.FC = () => {
 }
 
 const Friends: React.FC<{data: IFriendsQuery}> = ({data}) =>{
-    return (<Empty navTitle="友链" title="友链">
-        <><FriendsList friends={data.friendsJson.friends} />
-            <FriendsIntro />
-            <FriendsComments />
-        </>
-    </Empty>);
+    return (<>
+        <SEO title="友链" />
+        <Header title="友链" />
+        <FriendsList friends={data.friendsJson.friends} />
+        <FriendsIntro />
+        <FriendsComments />
+    </>);
 };
 
 export default Friends;

@@ -1,6 +1,7 @@
 import React, {Dispatch, useEffect, useState} from "react";
 
-import Empty from "../template/empty";
+import Header from "../components/public/header";
+import SEO from "../components/public/seo";
 import SteamComponent from "../components/page/steam/steam-component";
 
 const STEAM_ALL_URL = 'https://steaminfo.mmx223223.workers.dev';
@@ -38,7 +39,9 @@ const SteamPage: React.FC = () => {
         fetchData(STEAM_RECENT_URL, recentSetData);
     }, [])
 
-    return (<Empty title="Steam" navTitle="Steam Games">
+    return (<>
+        <SEO title="Steam" />
+        <Header title="Steam Games" />
         <div className="my-steam">
             <div className="my-steam__intro">
                 <p>最近在玩({recentGames.length})</p>
@@ -57,7 +60,7 @@ const SteamPage: React.FC = () => {
                 })}
             </div>
         </div>
-    </Empty>);
+    </>);
 };
 
 export default SteamPage;
