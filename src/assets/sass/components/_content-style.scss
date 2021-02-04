@@ -1,5 +1,18 @@
 @import "../variable";
 
+%normal-code {
+  padding: 2px 4px;
+  font-size: 90%;
+  border-radius: 4px;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  white-space: initial;
+
+  &::selection {
+    background: $secondary;
+  }
+}
+
 .my-page-content {
   color: #222;
 
@@ -12,20 +25,16 @@
     margin-bottom: .75rem;
 
     > code {
-      padding: 2px 4px;
-      font-size: 90%;
-      border-radius: 4px;
-      color: #c7254e;
-      background-color: #f9f2f4;
-
-      &::selection {
-        background: $secondary;
-      }
+      @extend %normal-code;
     }
   }
 
   blockquote {
     @extend %effect-blockquote;
+
+    > code {
+      @extend %normal-code;
+    }
   }
 
   iframe {
@@ -38,6 +47,10 @@
     list-style: inherit;
     li{
       padding-bottom: .4rem;
+
+      > code {
+        @extend %normal-code;
+      }
     }
   }
 
