@@ -63,13 +63,22 @@ export default function createHomepage(res: PostQuery, actions: Actions) {
             next = group[index + 1].yearMonth;
         }
 
+        // TODO: remove fakeContext once issue https://github.com/gatsbyjs/gatsby/issues/26520 resolved
+        const fakeContext = 'fakeContext';
         const context = {
             data: posts,
             prev,
             next,
             now: index + 1,
             sum: group.length,
-        }
+        };
+
+        // fakeContext
+        actions.createPage({
+            path: `${year}\/${month}`,
+            component: homepageTemplate,
+            context: fakeContext,
+        });
 
         actions.createPage({
             path: `${year}\/${month}`,
@@ -78,6 +87,13 @@ export default function createHomepage(res: PostQuery, actions: Actions) {
         });
 
         if (index === 0) {
+            // fakeContext
+            actions.createPage({
+                path: `/`,
+                component: homepageTemplate,
+                context: fakeContext,
+            });
+
             actions.createPage({
                 path: '/',
                 component: homepageTemplate,
