@@ -55,11 +55,15 @@
     &:first-child {
       float: left;
     }
+
+    &:last-child {
+      padding-right: .5rem;
+    }
   }
 }
 
 .my-page-content {
-  margin-top: .5rem;
+  margin-top: 1rem;
 }
 
 .PhotoView__Photo {

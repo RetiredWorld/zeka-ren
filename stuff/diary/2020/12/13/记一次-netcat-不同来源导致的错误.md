@@ -1,7 +1,8 @@
 ---
 date: 2020-12-14
 title: 记一次 netcat 不同来源导致的错误
-tags: []
+tags:
+  - Linux
 ---
 环境为 Arch Linux，使用 pacman 安装。
 

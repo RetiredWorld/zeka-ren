@@ -1,7 +1,8 @@
 ---
 date: 2020-12-08
 title: 谈一谈 node-sass 的坑
-tags: []
+tags:
+  - 前端
 ---
 > 这是在 Linux 开发的经验，可能不太适用其他环境。
 

@@ -1,7 +1,8 @@
 ---
 date: 2020-12-14
 title: 记配置 uwsgi 的坑
-tags: []
+tags:
+  - 网络
 ---
 如果用 python 部署服务器，网上绝大多数教程都是告诉你使用 uwsgi。uwsgi 允许你启用多个线程来调用你的 Django 或者 Flask 应用，性能可以得到很大提升。
 

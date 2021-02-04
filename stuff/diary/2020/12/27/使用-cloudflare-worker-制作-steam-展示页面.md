@@ -1,9 +1,10 @@
 ---
 date: 2020-12-28
 title: 使用 Cloudflare Worker 制作 Steam 展示页面
+tags:
+  - 网络
 images:
   - src: photo_2020-12-28_02-01-07.jpg
-tags: []
 ---
 参考 [这篇](https://dogcraft.top/archives/106/)。
 

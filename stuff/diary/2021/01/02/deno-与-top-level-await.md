@@ -1,7 +1,9 @@
 ---
 date: 2021-01-02
 title: Deno 与 top level await
-tags: []
+tags:
+  - 前端
+  - Deno
 ---
 单线程 JavaScript 能获得成功的一大原因在于其强大的异步能力。而作为 Node 的 “纠错者”，Deno 提供了更完善的异步支持。~~async await 满天飞~~
 

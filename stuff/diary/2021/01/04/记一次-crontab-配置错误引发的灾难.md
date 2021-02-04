@@ -1,9 +1,10 @@
 ---
 date: 2021-01-04
 title: 记一次 crontab 配置错误引发的灾难
+tags:
+  - Linux
 images:
   - src: screenshot_20210104_115457.png
-tags: []
 ---
 书写 cron 定时同步脚本时，时间参数设置出现了错误：
 

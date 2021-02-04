@@ -1,7 +1,8 @@
 ---
 date: 2020-12-16
 title: 年轻人的第一个 Github Actions
-tags: []
+tags:
+  - 网络
 ---
 写了一个简单的 Githb Actions,每次 pull 都自动将 Next.js 部署到服务器并运行。稍微记录下使用到的 actions：
 

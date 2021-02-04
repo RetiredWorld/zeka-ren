@@ -1,7 +1,8 @@
 ---
 date: 2020-12-15
 title: 记一次 swarp 安装的错误
-tags: []
+tags:
+  - Linux
 ---
 > 安装的是 astromatic 的图片处理软件 swarp，不是 X server 的 swarp，与之类似的还有 docker。安装环境为 Ubuntu20。
 

@@ -1,7 +1,9 @@
 ---
 date: 2021-01-18
 title: Ubuntu 配置 dhcp
-tags: []
+tags:
+  - 网络
+  - Linux
 ---
 > Ubuntu Server 18 LTS
 

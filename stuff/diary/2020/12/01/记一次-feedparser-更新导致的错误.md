@@ -1,7 +1,8 @@
 ---
 date: 2020-12-01
 title: 记一次 feedparser 更新导致的错误
-tags: []
+tags:
+  - Python
 ---
 一直将 [RSSHub](https://rsshub.app/) 作为爬虫源。为了解析，使用了 Python 的 `feedparser`库。
 

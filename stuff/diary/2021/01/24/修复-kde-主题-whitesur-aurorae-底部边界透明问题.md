@@ -5,7 +5,9 @@ images:
   - alt: 主题透明底部
     src: screenshot_20210124_100323.png
   - src: screenshot_20210124_101025.png
-tags: []
+tags:
+  - KDE
+  - Linux
 ---
 对于 4k 屏幕来说，各种主题兼容性都不太好，往往存在缩放问题。为此 [WhiteSur Aurorae](https://store.kde.org/p/1398835/) 主题提供了不同的缩放比（1.25, 1.5, 2）。
 

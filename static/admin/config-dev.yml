@@ -1,7 +1,7 @@
 backend:
   name: github
-  branch: master
-  repo: RetiredWorld/zeka-ren
+#  branch: master
+#  repo: RetiredWorld/zeka-ren
 
 media_folder: stuff/media
 public_folder: /img

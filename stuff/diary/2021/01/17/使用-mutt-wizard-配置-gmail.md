@@ -1,7 +1,8 @@
 ---
 date: 2021-01-17
 title: 使用 mutt wizard 配置 gmail
-tags: []
+tags:
+  - Linux
 ---
 > 参考的是 [Mutt 终端邮箱](https://teaper.dev/Mutt-f17401710cb4432f824e66bfcd5d0c2c),gmail 流程稍有不同。
 

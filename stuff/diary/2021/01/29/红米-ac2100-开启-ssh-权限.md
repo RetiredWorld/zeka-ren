@@ -1,9 +1,13 @@
 ---
 date: 2021-01-29
 title: 红米 AC2100 开启 SSH 权限
-tags: []
+tags:
+  - 刷机
+  - 路由器
 ---
 > TL;DR [看这里](https://www.right.com.cn/forum/thread-4032490-1-1.html)，成功版本为 `2.0.23 稳定版`，其他版本不保证成功。
+
+
 
 之前按照 [这篇](https://www.xiaoz.me/archives/15192) 想开启路由器的 telnet 权限。
 

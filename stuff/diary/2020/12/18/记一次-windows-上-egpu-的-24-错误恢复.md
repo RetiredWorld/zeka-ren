@@ -1,9 +1,10 @@
 ---
 date: 2020-12-18
 title: 记一次 Windows 上 eGPU 的 24 错误恢复
+tags:
+  - Windows
 images:
   - src: photo_2020-12-16_18-00-07.jpg
-tags: []
 ---
 外接显卡扩展坞一时爽，断开火葬场。网上似乎也没有提到如何才算正确断开 eGPU。
 

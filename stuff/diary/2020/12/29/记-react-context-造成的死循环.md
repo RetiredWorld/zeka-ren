@@ -1,7 +1,9 @@
 ---
 date: 2020-12-29
 title: 记 React Context 造成的死循环
-tags: []
+tags:
+  - 前端
+  - React
 ---
 React Context 也是 Redux 的基础，相对也更容易用（？）。
 

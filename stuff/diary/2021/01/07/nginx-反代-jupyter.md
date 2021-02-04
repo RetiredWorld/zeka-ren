@@ -1,7 +1,9 @@
 ---
 date: 2021-01-08
 title: Nginx 反代 jupyter
-tags: []
+tags:
+  - Nginx
+  - 网络
 ---
 Nginx 反代理 jupyter 可以让控制更灵活（并不。
 
