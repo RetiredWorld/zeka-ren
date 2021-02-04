@@ -40,11 +40,11 @@ const SteamPage: React.FC = () => {
     }, []);
 
     return (<>
-        <SEO title="Steam" />
-        <Header title="Steam Games" />
+        <SEO title="Steam Games" />
+        <Header title="Steam" />
         <div className="my-steam">
             <div className="my-steam__intro">
-                <p>最近在玩({recentGames.length})</p>
+                <p>最近({(recentGames.length === 0)?'加载中':recentGames.length})</p>
             </div>
             <div className="my-steam-part my-steam-recently">
                 {recentGames.map(game=>{
@@ -52,7 +52,7 @@ const SteamPage: React.FC = () => {
                 })}
             </div>
             <div className="my-steam__intro">
-                <p>我的库存({games.length})</p>
+                <p>库存({(games.length === 0)?'加载中':games.length})</p>
             </div>
             <div className="my-steam-part my-steam-all">
                 {games.map(game=>{

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createRef, useRef } from 'react';
 
 const STEAM_BASE_URL = 'https://steamcommunity.com/app';
 const STEAM_IMAGE_URL = 'https://steamcdn-a.akamaihd.net/steam/apps';
@@ -45,25 +45,29 @@ const SteamComponent: React.FC<ISteamComponentProp> = ({ appId, name, time, rece
     const imgSrc = getSteamImageUrl(appId);
 
     if (myTime.hour === -1) {
-        timer = (<p>总共玩了 {myTime.minute}m</p>);
+        timer = (<p>总时间： {myTime.minute}m</p>);
     } else {
-        timer = (<p>总共玩了 {myTime.hour}h{myTime.minute}m</p>);
+        timer = (<p>总时间： {myTime.hour}h{myTime.minute}m</p>);
     }
 
     if (recentTime !== null) {
         if (myRecentTime.hour === -1) {
-            recentTimer = (<p>最近玩了 {myRecentTime.minute}m</p>);
+            recentTimer = (<p>近期时间： {myRecentTime.minute}m</p>);
         } else {
-            recentTimer = (<p>最近玩了 {myRecentTime.hour}h{myRecentTime.minute}m</p>);
+            recentTimer = (<p>近期时间： {myRecentTime.hour}h{myRecentTime.minute}m</p>);
         }
     }
 
+    const imgRef = createRef<HTMLImageElement>();
+    const imgEle = (<img ref={imgRef} src={ imgSrc } onError={()=>{
+        imgRef.current.src = '/static/images/fail.jpg';
+    }} alt={ appId.toString() } />);
 
     return (
         <div className="my-steam-cp card">
             <a target="_blank" rel="noopener noreferrer" href={ url }>
                 <div className="my-steam-logo">
-                    <img src={ imgSrc } alt={ appId.toString() } />
+                    { imgEle }
                 </div>
                 <div className="my-steam-info">
                     <h2>{ name }</h2>
