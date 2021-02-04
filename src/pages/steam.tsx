@@ -1,8 +1,8 @@
-import React, {Dispatch, useEffect, useState} from "react";
+import React, { Dispatch, useEffect, useState } from 'react';
 
-import Header from "../components/public/header";
-import SEO from "../components/public/seo";
-import SteamComponent from "../components/page/steam/steam-component";
+import Header from '../components/public/header';
+import SEO from '../components/public/seo';
+import SteamComponent from '../components/page/steam/steam-component';
 
 const STEAM_ALL_URL = 'https://steaminfo.mmx223223.workers.dev';
 const STEAM_RECENT_URL = 'https://steaminfo.mmx223223.workers.dev?type=recent';
@@ -15,13 +15,13 @@ const fetchData = (url: string, setter: Dispatch<ISteamData>) => {
         setter(data);
     }).catch(e=>{
         console.log(e);
-    })
-}
+    });
+};
 
 const initData: ISteamData = {
     response: {
-        games:[],
-    }
+        games: [],
+    },
 };
 
 const SteamPage: React.FC = () => {
@@ -33,11 +33,11 @@ const SteamPage: React.FC = () => {
 
     useEffect( ()=>{
         fetchData(STEAM_ALL_URL, setData);
-    }, [])
+    }, []);
 
     useEffect( ()=>{
         fetchData(STEAM_RECENT_URL, recentSetData);
-    }, [])
+    }, []);
 
     return (<>
         <SEO title="Steam" />

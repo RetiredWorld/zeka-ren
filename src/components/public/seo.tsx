@@ -33,15 +33,10 @@ const SEO: React.FC<SEOProperties> = ({
                     }
                 }
             }
-        `
-  );
+        `);
 
   const metaDescription = description || site.siteMetadata.description;
 
-  let titleTemplate = `%s - ${site.siteMetadata.title}`;
-  if (title === '') {
-    titleTemplate = `${site.siteMetadata.title}`
-  }
 
   return (
       <Helmet

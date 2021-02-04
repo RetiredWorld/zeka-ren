@@ -1,26 +1,25 @@
-import React from "react";
+import React from 'react';
 
 import {
     ArchiveContext,
     NodeItem,
     ISortDate, ISortedItemBase, ISortedItemDay, ISortedItemMonth, ISortedItems, ISortedItemYear,
-    ParseDateRes
-} from "../types/query/archive";
+    ParseDateRes,
+} from '../types/query/archive';
 
-import Empty from "./empty";
-import SEO from "../components/public/seo";
-import Header from "../components/public/header";
-import { Link } from "gatsby";
+import SEO from '../components/public/seo';
+import Header from '../components/public/header';
+import { Link } from 'gatsby';
 
-import { getPageUrl } from "./homepage";
+import { getPageUrl } from './homepage';
 
 function parseStr(date: string | number, length: number = 2): string {
-    let strDate = date.toString()
-    const offset = length - strDate.length
-    if (offset > 0){
-        strDate = "0".repeat(offset) + strDate
+    let strDate = date.toString();
+    const offset = length - strDate.length;
+    if (offset > 0) {
+        strDate = '0'.repeat(offset) + strDate;
     }
-    return strDate
+    return strDate;
 }
 
 class SortDate implements ISortDate {
@@ -34,7 +33,7 @@ class SortDate implements ISortDate {
     }
 
     private parseDate(dateStr: string): ParseDateRes {
-        const group = dateStr.split("-").map(str=>parseInt(str));
+        const group = dateStr.split('-').map(str=>parseInt(str));
         return {
             year: group[0],
             month: group[1],
@@ -43,13 +42,13 @@ class SortDate implements ISortDate {
     }
 
     private static sortItem(sortObj: ISortedItemBase): number[] {
-        Object.keys(sortObj).filter(item=>(item !== 'order')).map(Number)
-        return Object.keys(sortObj).filter(item=>(item !== 'order')).map(Number).sort((a, b)=>b-a)
+        Object.keys(sortObj).filter(item=>(item !== 'order')).map(Number);
+        return Object.keys(sortObj).filter(item=>(item !== 'order')).map(Number).sort((a, b)=>b-a);
     }
 
     process() {
-        let nowYear = -1
-        let nowMonth = -1
+        let nowYear = -1;
+        let nowMonth = -1;
         const a: ISortedItems = this.sortedDate;
         const mySort = SortDate.sortItem;
 
@@ -66,7 +65,7 @@ class SortDate implements ISortDate {
                 nowYear = postTime.year;
                 nowMonth = -1;
                 a[nowYear] = {
-                    order: []
+                    order: [],
                 };
             }
 
@@ -76,12 +75,12 @@ class SortDate implements ISortDate {
                 }
                 nowMonth = postTime.month;
                 a[nowYear][nowMonth] = {
-                    order: []
+                    order: [],
                 };
             }
 
             if (a[nowYear][nowMonth][postTime.day] === undefined) {
-                a[nowYear][nowMonth][postTime.day] = []
+                a[nowYear][nowMonth][postTime.day] = [];
             }
 
             a[nowYear][nowMonth][postTime.day].push(frontmatter);
@@ -110,18 +109,18 @@ const ArchiveDay: React.FC<{
 }> = ({ myDate, myKey, month, year }) => {
     return (<>
         { myDate.order.map(day => {
-            const date = `${parseStr(month)}-${parseStr(day)}`
+            const date = `${parseStr(month)}-${parseStr(day)}`;
             const key = `${myKey}-${day}`;
             return (<div key={key}>
                 { myDate[day].map((item, index) => {
                     return (<li key={`${key}-${index}`} className="archive-item"><p>{date} » <Link className="archive-item__link"
-                                                                       to={getPageUrl({year, month, hashId: item.title})}>{ item.title } </Link></p>
-                    </li>)
+                                                                       to={getPageUrl({ year, month, hashId: item.title })}>{ item.title } </Link></p>
+                    </li>);
                 }) }
-            </div>)
+            </div>);
         }) }
     </>);
-}
+};
 
 const ArchiveMonth: React.FC<{ myDate: ISortedItemMonth, myKey: string, year: string | number }> = ({ myDate, myKey, year }) => {
     return (<>
@@ -129,8 +128,8 @@ const ArchiveMonth: React.FC<{ myDate: ISortedItemMonth, myKey: string, year: st
             let num = 0;
             myDate[month].order.forEach(day => {
                 num += myDate[month][day].length;
-            })
-            const key = `${myKey}-${month}`
+            });
+            const key = `${myKey}-${month}`;
             return (<div key={key}>
                 <h2 className="archive-month">{ month }月 ({ num }篇)</h2>
                 <ul className="archive-list">
@@ -138,7 +137,7 @@ const ArchiveMonth: React.FC<{ myDate: ISortedItemMonth, myKey: string, year: st
                 </ul>
             </div>);
         }) }
-    </>)
+    </>);
 };
 
 const ArchiveYear: React.FC<{myDate: ISortedItemYear }> = ({ myDate }) => {

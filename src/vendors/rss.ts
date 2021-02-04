@@ -1,6 +1,6 @@
-import { getPageUrl } from "../template/homepage";
+import { getPageUrl } from '../template/homepage';
 
-import { ISiteMetadata } from "../gatsby/config";
+import { ISiteMetadata } from '../gatsby/config';
 
 interface IPost {
     site: {
@@ -31,7 +31,8 @@ interface IPost {
 }
 
 export interface IFeed {
-    serialize({query: {site, allMarkdownRemark}}: {
+    // eslint-disable-next-line no-unused-vars
+    serialize(arg: {
         query: IPost}
     ): any
     query: string
@@ -64,24 +65,24 @@ const flagFeed: IFeed = {
     }
   }
 }`,
-    serialize({query}) {
+    serialize({ query }) {
         return query.allMarkdownRemark.nodes.map(node => {
             const [ year, month ] = node.fields.year_month.split('-');
             const htmlItem = node.html + node.frontmatter.images?.map(item=>{
                 const src = item.src.childImageSharp.fixed.src;
-                return `<img src="${src}" alt=${(item.alt === null)?src: item.alt}>`
+                return `<img src="${src}" alt=${(item.alt === null)?src: item.alt}>`;
             }).join('');
             return Object.assign({}, node.frontmatter, {
                 date: node.frontmatter.date,
                 description: htmlItem,
-                url: query.site.siteMetadata.siteUrl + getPageUrl({year, month, hashId: node.frontmatter.title}),
-            })
-        })
+                url: query.site.siteMetadata.siteUrl + getPageUrl({ year, month, hashId: node.frontmatter.title }),
+            });
+        });
     },
     output: `/rss.xml`,
     title: `zeka 的 flag 订阅`,
 };
 
-const myFeeds = [flagFeed];
+const myFeeds = [ flagFeed ];
 
 export default myFeeds;

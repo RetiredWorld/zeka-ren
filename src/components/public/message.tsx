@@ -1,8 +1,8 @@
-import React, { useRef } from "react";
+import React, { useRef } from 'react';
 
 const Message: React.FC  = () => {
     function onClickClose() {
-        ref.current.classList.add('is-invisible')
+        ref.current.classList.add('is-invisible');
     }
 
     function onClickRefresh() {
@@ -22,6 +22,6 @@ const Message: React.FC  = () => {
             </div>
         </article>
     </div>);
-}
+};
 
 export default Message;

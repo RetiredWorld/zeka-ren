@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 import { graphql } from 'gatsby';
 
-import SEO from "../components/public/seo"
-import Header from "../components/public/header"
+import SEO from '../components/public/seo';
+import Header from '../components/public/header';
 
 interface IAboutProps {
     file: {

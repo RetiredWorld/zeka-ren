@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import SEO from "../components/public/seo";
-import Header from "../components/public/header"
+import SEO from '../components/public/seo';
+import Header from '../components/public/header';
 
-import { Link } from "gatsby";
+import { Link } from 'gatsby';
 
 const NotFoundPage: React.FC = () => {
     return (<>

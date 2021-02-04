@@ -1,4 +1,4 @@
-import React, {Dispatch} from "react";
+import React, { Dispatch } from 'react';
 
 export const initContext:IInfoContext = {
     title: '',
@@ -8,8 +8,8 @@ export const initContext:IInfoContext = {
 
 const initContextValue: IInfoContextValue = {
     info: initContext,
-    setInfo: null
-}
+    setInfo: null,
+};
 
 export const InfoContext = React.createContext<IInfoContextValue>(initContextValue);
 export const InfoConsumer = InfoContext.Consumer;

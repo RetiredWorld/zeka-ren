@@ -1,8 +1,8 @@
-import { Actions  } from "gatsby";
+import { Actions  } from 'gatsby';
 
 import path from 'path';
-import { rootDir } from "../config";
-import {NodeItem, PostQuery} from "../../types/query/post";
+import { rootDir } from '../config';
+import { NodeItem, PostQuery } from '../../types/query/post';
 
 const homepageTemplate = path.join(rootDir, 'src/template/homepage.tsx');
 const emptyTemplate = path.join(rootDir, 'src/template/empty.tsx');
@@ -11,9 +11,9 @@ const sortAll = (res: PostQuery): PostQuery => {
     sortYearMonth(res);
     res.allFile.group.forEach(groupItem => {
         sortDay(groupItem.nodes);
-    })
-    return res
-}
+    });
+    return res;
+};
 
 
 const sortYearMonth = (res: PostQuery): PostQuery => {
@@ -28,7 +28,7 @@ const sortYearMonth = (res: PostQuery): PostQuery => {
         }
 
         return 1;
-    })
+    });
     return res;
 };
 
@@ -38,10 +38,10 @@ const sortDay = (nodes: NodeItem[]): NodeItem[] => {
         const bDay = b.childMarkdownRemark.frontmatter.date.split('-')[2].toString();
 
         if (aDay > bDay) {
-            return -1
+            return -1;
         }
-        return 1
-    })
+        return 1;
+    });
     return nodes;
 };
 
@@ -75,13 +75,13 @@ export default function createHomepage(res: PostQuery, actions: Actions) {
 
         // fakeContext
         actions.createPage({
-            path: `${year}\/${month}`,
+            path: `${year}/${month}`,
             component: homepageTemplate,
             context: fakeContext,
         });
 
         actions.createPage({
-            path: `${year}\/${month}`,
+            path: `${year}/${month}`,
             component: homepageTemplate,
             context,
         });
@@ -99,7 +99,7 @@ export default function createHomepage(res: PostQuery, actions: Actions) {
                 component: homepageTemplate,
                 context,
             });
-            createdHomepage = true
+            createdHomepage = true;
         }
 
 
@@ -108,7 +108,7 @@ export default function createHomepage(res: PostQuery, actions: Actions) {
         actions.createPage({
             path: '/',
             component: emptyTemplate,
-            context: {}
+            context: {},
         });
     }
-};
+}

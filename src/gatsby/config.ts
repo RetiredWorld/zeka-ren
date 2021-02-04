@@ -15,7 +15,7 @@ const siteMetadata: ISiteMetadata = {
     title: `Zeka 的记事本`,
     description: `分享不值得纪念的东西`,
     author: `zeka`,
-    siteUrl: `https://flag.zeka.cloud`
+    siteUrl: `https://flag.zeka.cloud`,
 };
 
 const plugins: MyPlugin[] = [
@@ -38,7 +38,7 @@ const plugins: MyPlugin[] = [
             }
           }`,
             feeds,
-        }
+        },
     },
     {
         resolve: `gatsby-plugin-layout`,
@@ -65,7 +65,7 @@ const plugins: MyPlugin[] = [
         options: {
             name: `diary`,
             path: `${rootDir}/stuff/diary`,
-        }
+        },
     },
     {
         resolve: `gatsby-source-filesystem`,
@@ -81,7 +81,7 @@ const plugins: MyPlugin[] = [
                 {
                     resolve: `gatsby-remark-prismjs`,
                     options: {
-                        classPrefix: "language-",
+                        classPrefix: 'language-',
 
                         inlineCodeMarker: null,
                         aliases: {},
@@ -89,8 +89,8 @@ const plugins: MyPlugin[] = [
                         noInlineHighlight: false,
                         languageExtensions: [
                             {
-                                language: "superscript",
-                                extend: "javascript",
+                                language: 'superscript',
+                                extend: 'javascript',
                                 definition: {
                                     superscript_types: /(SuperType)/,
                                 },
@@ -102,8 +102,8 @@ const plugins: MyPlugin[] = [
                             },
                         ],
                         prompt: {
-                            user: "zeka",
-                            host: "laz",
+                            user: 'zeka',
+                            host: 'laz',
                             global: false,
                         },
                         escapeEntities: {},
@@ -113,25 +113,25 @@ const plugins: MyPlugin[] = [
                     resolve: `gatsby-remark-katex`,
                     options: {
                         // Add any KaTeX options from https://github.com/KaTeX/KaTeX/blob/master/docs/options.md here
-                        strict: `ignore`
-                    }
+                        strict: `ignore`,
+                    },
                 },
                 {
                     resolve: `gatsby-remark-admonitions`,
                     options: {
                         customTypes: {
                             custom: {
-                                keyword: "test",
+                                keyword: 'test',
                                 emoji: '💻',
-                                svg: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M15 2H1c-.55 0-1 .45-1 1v9c0 .55.45 1 1 1h5.34c-.25.61-.86 1.39-2.34 2h8c-1.48-.61-2.09-1.39-2.34-2H15c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm0 9H1V3h14v8z"></path></svg>'
+                                svg: `<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M15 2H1c-.55 0-1 .45-1 1v9c0 .55.45 1 1 1h5.34c-.25.61-.86 1.39-2.34 2h8c-1.48-.61-2.09-1.39-2.34-2H15c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1zm0 9H1V3h14v8z'></path></svg>`,
                             },
                         },
-                        tag: ":::",
-                        icons: "svg",
-                    }
+                        tag: ':::',
+                        icons: 'svg',
+                    },
                 },
             ],
-        }
+        },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -151,7 +151,7 @@ const plugins: MyPlugin[] = [
         resolve: `gatsby-plugin-google-analytics`,
         options: {
             // The property ID; the tracking code won't be generated without it
-            trackingId: "G-38TX28QRZN",
+            trackingId: 'G-38TX28QRZN',
             // Defines where to place the tracking script - `true` in the head and `false` in the body
             head: false,
             // Setting this parameter is optional
@@ -161,17 +161,17 @@ const plugins: MyPlugin[] = [
             pageTransitionDelay: 0,
             sampleRate: 5,
             siteSpeedSampleRate: 10,
-            cookieDomain: "flag.zeka.cloud",
+            cookieDomain: 'flag.zeka.cloud',
         },
     },
     `gatsby-plugin-sitemap`,
     {
-        resolve: "gatsby-plugin-webpack-bundle-analyser-v2",
+        resolve: 'gatsby-plugin-webpack-bundle-analyser-v2',
         options: {
-            analyzerMode: "disabled",
-            // analyzerMode: "server",
-            analyzerPort: "8888",
-            defaultSizes: "gzip",
+            analyzerMode: 'disabled',
+            // analyzerMode: 'server',
+            analyzerPort: '8888',
+            defaultSizes: 'gzip',
         },
     },
     {
@@ -213,8 +213,8 @@ const plugins: MyPlugin[] = [
 
 const config = {
     siteMetadata,
-    plugins
-}
+    plugins,
+};
 
 export default config;
 

@@ -1,7 +1,7 @@
-import {BaseContext, BaseMarkdownRemark} from "./base";
+import { BaseContext } from './base';
 
 export interface ArchiveItem {
-    date: string,
+    date: string
     title: string
 }
 
@@ -23,7 +23,7 @@ export interface ArchiveContext extends BaseContext {
     }
 }
 
-interface ParseDateRes {
+export interface ParseDateRes {
     year: number,
     month: number,
     day: number

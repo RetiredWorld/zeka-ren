@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import Tools from "../components/public/tools";
-import Background from "../components/public/background";
-import APlayer from "../components/public/aplayer";
-import Nav from "../components/public/nav";
-import Footer from "../components/public/footer";
-import Message from "../components/public/message";
+import Tools from '../components/public/tools';
+import Background from '../components/public/background';
+import APlayer from '../components/public/aplayer';
+import Nav from '../components/public/nav';
+import Footer from '../components/public/footer';
+import Message from '../components/public/message';
 
 
 const Layout: React.FC = ({ children }) => {

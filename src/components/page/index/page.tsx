@@ -1,32 +1,31 @@
-import React from "react";
+import React from 'react';
+import { Link } from 'gatsby';
 
-import { Link } from "gatsby";
-
-import PageComponent from "./page-component";
-import { getPageUrl } from "../../../template/homepage";
-import {PostContextObj} from "../../../types/query/post";
+import PageComponent from './page-component';
+import { getPageUrl } from '../../../template/homepage';
+import { PostContextObj } from '../../../types/query/post';
 
 const PagePaginator: React.FC<{
     data: PostContextObj,
     direction?: 'top' | 'bottom'
-}> = ({data, direction}) => {
+}> = ({ data, direction }) => {
     let prevEle = (<div className="my-pager__prev hide" >« 上个月</div>);
     if (data.prev !== null) {
         const [ year, month ] = data.prev.split('-');
-        prevEle = (<div className="my-pager__prev"><Link to={getPageUrl({year, month})}>« {`${year}-${month}`}</Link></div>);
+        prevEle = (<div className="my-pager__prev"><Link to={getPageUrl({ year, month })}>« {`${year}-${month}`}</Link></div>);
     }
 
     let nextEle = (<div className="my-pager__next hide" >下个月  »</div>);
     if (data.next !== null) {
         const [ year, month ] = data.next.split('-');
-        nextEle = (<div className="my-pager__next"><Link to={getPageUrl({year, month})}>{`${year}-${month}`}  »</Link></div>);
+        nextEle = (<div className="my-pager__next"><Link to={getPageUrl({ year, month })}>{`${year}-${month}`}  »</Link></div>);
     }
 
-    let pagerClassName: string
+    let pagerClassName: string;
     if (direction === 'top') {
-        pagerClassName = 'my-pager__top'
+        pagerClassName = 'my-pager__top';
     } else {
-        pagerClassName = 'my-pager__bottom'
+        pagerClassName = 'my-pager__bottom';
     }
 
     return (<div className={`my-pager ${pagerClassName}`}>
@@ -37,9 +36,9 @@ const PagePaginator: React.FC<{
 };
 
 const Page: React.FC<{data: PostContextObj}> = ({
-    data
+    data,
 }) => {
-    const posts = data.data.nodes
+    const posts = data.data.nodes;
     return (<div className="my-page-wrap">
         <PagePaginator data={data} direction='top'/>
         {posts.map((post, index) => {

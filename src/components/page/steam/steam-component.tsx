@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-const STEAM_BASE_URL = 'https://steamcommunity.com/app'
-const STEAM_IMAGE_URL = 'https://steamcdn-a.akamaihd.net/steam/apps'
+const STEAM_BASE_URL = 'https://steamcommunity.com/app';
+const STEAM_IMAGE_URL = 'https://steamcdn-a.akamaihd.net/steam/apps';
 
 const getSteamUrl = (appId: string | number): string => {
 
@@ -18,7 +18,7 @@ const num2time = (numTime: string | number): ITime => {
     const myTime: ITime = {
         hour: -1,
         minute: -1,
-    }
+    };
 
     if (typeof numTime === 'string') {
         t = parseInt(numTime);
@@ -33,9 +33,9 @@ const num2time = (numTime: string | number): ITime => {
         myTime.minute = t % 60;
     }
     return myTime;
-}
+};
 
-const SteamComponent: React.FC<ISteamComponentProp> = ({appId, name, time, recentTime = null}) => {
+const SteamComponent: React.FC<ISteamComponentProp> = ({ appId, name, time, recentTime = null }) => {
 
     const myTime = num2time(time);
     const myRecentTime = num2time(recentTime);
@@ -61,7 +61,7 @@ const SteamComponent: React.FC<ISteamComponentProp> = ({appId, name, time, recen
 
     return (
         <div className="my-steam-cp card">
-            <a target="_blank" href={ url }>
+            <a target="_blank" rel="noopener noreferrer" href={ url }>
                 <div className="my-steam-logo">
                     <img src={ imgSrc } alt={ appId.toString() } />
                 </div>

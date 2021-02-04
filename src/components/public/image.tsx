@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react";
+import React, { useEffect, useRef } from 'react';
 
 const BLANK_IMG = '/static/images/blank.jpg';
 
@@ -33,8 +33,8 @@ const MyImage: React.FC<IMyImage> = (prop) => {
         imageIo.observe(imageEle.current);
         return ()=>{
             imageIo.disconnect();
-        }
-    })
+        };
+    });
      return (<img ref={imageEle} className={prop.className + ' my-lazy-image'} alt={(prop.alt !== null)?prop.alt: prop.src} src={prop.src} srcSet={BLANK_IMG}  />);
 };
 

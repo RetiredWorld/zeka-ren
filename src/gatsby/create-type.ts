@@ -5,7 +5,7 @@ import path from 'path';
 const myCreateSchema = (actions: Actions): void => {
     actions.createFieldExtension({
         name: 'imageFile',
-        extend:()=>({
+        extend: ()=>({
             resolve: function (src, args, context, info) {
                 // look up original string, i.e img/photo.jpg
                 const { fieldName } = info;
@@ -16,21 +16,21 @@ const myCreateSchema = (actions: Actions): void => {
                     return null;
                 }
 
-                if (partialPath.startsWith("/")){
+                if (partialPath.startsWith('/')){
                     partialPath = partialPath.slice(1);
-                } else if (partialPath.startsWith("./")) {
+                } else if (partialPath.startsWith('./')) {
                     partialPath = partialPath.slice(2);
                 }
 
-                if (partialPath.indexOf("\\") === -1 && partialPath.indexOf("/") === -1){
+                if (partialPath.indexOf('\\') === -1 && partialPath.indexOf('/') === -1){
                     const currentDate = ancestor.name;
-                    partialPath = currentDate + "/" + partialPath;
+                    partialPath = currentDate + '/' + partialPath;
                 }
 
                 // get the absolute path of the image file in the filesystem
                 const filePath = path.join(
                     ancestor.dir,
-                    partialPath
+                    partialPath,
                 );
                 // look for a node with matching path
                 // check out the query object, it's the same as a regular query filter
@@ -40,10 +40,10 @@ const myCreateSchema = (actions: Actions): void => {
                     query: {
                         filter: {
                             absolutePath: {
-                                eq: filePath
-                            }
-                        }
-                    }
+                                eq: filePath,
+                            },
+                        },
+                    },
                 });
 
                 // no node? return
@@ -53,8 +53,8 @@ const myCreateSchema = (actions: Actions): void => {
 
                 // else return the node
                 return fileNode;
-            }
-        })
+            },
+        }),
     });
 };
 

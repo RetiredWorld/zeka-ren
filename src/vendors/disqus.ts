@@ -1,4 +1,4 @@
-import DisqusJS from 'disqusjs'
+import DisqusJS from 'disqusjs';
 
 const genDisqus = () => {
     return new DisqusJS({
@@ -7,8 +7,8 @@ const genDisqus = () => {
         api: 'https://disqus.skk.moe/disqus/',
         apikey: 'YY8aVNwSX7yfHwsc5O3zMfNXlnysJl3vzIACudT0MBFm2fZOrtnNUo7cxT8jucB4',
         admin: 'lazzeka',
-        adminLabel: ''
+        adminLabel: '',
     });
-}
+};
 
 export default genDisqus;

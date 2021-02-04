@@ -1,4 +1,4 @@
-import { Actions, Node } from "gatsby";
+import { Actions, Node } from 'gatsby';
 
 interface IMyNode extends Node {
     frontmatter: {

@@ -1,6 +1,6 @@
-import React, { memo } from "react";
+import React from 'react';
 
-import { useRef, useState } from 'react'
+import { useRef, useState } from 'react';
 import { Link } from 'gatsby';
 
 export interface HeaderProp {
@@ -16,16 +16,16 @@ function yearPastPercent(): number{
     return Math.ceil(pDay/tDay*10000)/100;
 }
 
-const Header: React.FC<HeaderProp> = React.memo<HeaderProp>((prop) => {
+const Header: React.FC<HeaderProp> = (prop) => {
     const headerRef = useRef<HTMLHeadingElement>(null);
     const [ percent ] = useState(yearPastPercent());
 
     return (<header className="my-header">
             <h1 ref={headerRef} className="my-header-title" time-str={`今年已经虚度了 ${percent}%`} style={{
-                [ "--time-percent" as any]: percent / 100,
+                [ '--time-percent' as any]: percent / 100,
             }}><Link className="my-header__link" to="/">Zeka 的记事本</Link></h1>
             <span className="my-header-sub">{prop.title}</span>
     </header>);
-});
+};
 
 export default Header;

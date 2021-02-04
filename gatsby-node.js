@@ -1,7 +1,7 @@
 const myCreateType = require('./src/gatsby/create-type.ts');
 exports.createSchemaCustomization = ({ actions }) => {
     myCreateType.default(actions);
-}
+};
 
 const myCreateSchema = require('./src/gatsby/create-schema.ts');
 exports.sourceNodes = ({ actions }) => {

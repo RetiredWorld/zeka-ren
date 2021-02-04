@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import { Link } from "gatsby";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import { faHome, faLink, faArchive, faCat, faWifi } from '@fortawesome/free-solid-svg-icons'
-import { faSteam } from "@fortawesome/free-brands-svg-icons"
+import { Link } from 'gatsby';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faLink, faArchive, faCat, faWifi } from '@fortawesome/free-solid-svg-icons';
+import { faSteam } from '@fortawesome/free-brands-svg-icons';
 
 const Nav: React.FC = () => {
 

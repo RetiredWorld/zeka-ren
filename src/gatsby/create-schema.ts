@@ -1,6 +1,6 @@
 import { Actions } from 'gatsby';
 
-const myCreateType  = (action: Actions): void => {
+const myCreateType = (action: Actions): void => {
     action.createTypes(`
         type ImageUserInfo @infer {
       src: File @imageFile
@@ -16,8 +16,7 @@ const myCreateType  = (action: Actions): void => {
 
     type MarkdownRemark implements Node @infer {
       frontmatter: MarkdownRemarkUserFrontmatter
-    }
-    `);
+    }`);
 };
 
 export default myCreateType;

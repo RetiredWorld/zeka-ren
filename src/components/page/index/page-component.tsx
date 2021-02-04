@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react';
 
 import { Link } from 'gatsby';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTag, faLink } from '@fortawesome/free-solid-svg-icons';
-import { IFrontMatter, IImage, NodeItem } from "../../../types/query/post";
+import { IFrontMatter, IImage, NodeItem } from '../../../types/query/post';
 import { PhotoProvider, PhotoConsumer } from 'react-photo-view';
 
-import MyImage from "../../public/image";
-import { getPageUrl } from "../../../template/homepage";
+import MyImage from '../../public/image';
+import { getPageUrl } from '../../../template/homepage';
 
-const PageHeader = ({frontmatter}: {
+const PageHeader = ({ frontmatter }: {
     frontmatter: IFrontMatter
 }): JSX.Element => {
-    const [year, month, day] = frontmatter.date.split('-').map(str=>parseInt(str));
+    const [ year, month, day ] = frontmatter.date.split('-').map(str=>parseInt(str));
     const url = getPageUrl({
         year,
         month,
@@ -38,12 +38,12 @@ const PageHeader = ({frontmatter}: {
     </>);
 };
 
-const PageContent = ({content}: {
+const PageContent = ({ content }: {
     content: string
 }): JSX.Element => {
 
     return (<div className="my-page-content" dangerouslySetInnerHTML={{
-        __html: content
+        __html: content,
     }}>
     </div>);
 };
@@ -58,7 +58,7 @@ const PageMediaMulti = ({ images }: {
             const myImage = image.src.image.fluid;
             return (<PhotoConsumer key={`${myImage.src}_${index}`} src={myImage.src} intro="aaa">
                     <div className="my-page-media__container" style={{
-                        ["--asp-ratio" as any]: myImage.aspectRatio
+                        ['--asp-ratio' as any]: myImage.aspectRatio,
                     }}>
                         <MyImage className="my-page-media__img" alt={image.alt} src={myImage.src} srcSet={myImage.srcSet} />
                     </div>
@@ -78,7 +78,7 @@ const PageMediaSingle = ({ images }: {
             const myImage = image.src.image.fluid;
             return (<PhotoConsumer key={`image-${myImage.src}_${index}`} src={myImage.src} intro="">
                     <div className="my-page-media__single" style={{
-                        ["--asp-ratio" as any]: myImage.aspectRatio
+                        ['--asp-ratio' as any]: myImage.aspectRatio,
                     }}>
                         <MyImage className="my-page-media__img" alt={image.alt} srcSet={myImage.srcSet} src={myImage.src} />
                     </div>
@@ -88,7 +88,7 @@ const PageMediaSingle = ({ images }: {
     </>);
 };
 
-const PageMedia = ({frontmatter}: {
+const PageMedia = ({ frontmatter }: {
     frontmatter: IFrontMatter
 }): JSX.Element => {
     let imageEle: JSX.Element;
@@ -125,7 +125,7 @@ const PageMedia = ({frontmatter}: {
     </div>);
 };
 
-const PageComponent = ({data}: {
+const PageComponent = ({ data }: {
     data: NodeItem
 }): JSX.Element => {
 

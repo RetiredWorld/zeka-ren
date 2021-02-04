@@ -1,11 +1,11 @@
 import { CreatePagesArgs } from 'gatsby';
-import { ArchiveQuery } from "../../types/query/archive";
-import {PostQuery} from "../../types/query/post";
+import { ArchiveQuery } from '../../types/query/archive';
+import { PostQuery } from '../../types/query/post';
 
 import createArchive from './create-archive';
-import createHomepage from "./create-homepage";
+import createHomepage from './create-homepage';
 
-const myCreatePages = async ({actions, graphql, reporter}: CreatePagesArgs) => {
+const myCreatePages = async ({ actions, graphql, reporter }: CreatePagesArgs) => {
     const archiveResult = await graphql(`query ArchiveQuery {
   allFile(sort: {fields: [childMarkdownRemark___frontmatter___date, childMarkdownRemark___frontmatter___date], order: DESC}, filter: {extension: {eq: "md"}, sourceInstanceName: {eq: "diary"}}) {
     nodes {
@@ -21,7 +21,7 @@ const myCreatePages = async ({actions, graphql, reporter}: CreatePagesArgs) => {
 
     if (archiveResult.errors) {
         reporter.panicOnBuild(`Error while running archive query.`);
-        return
+        return ;
     }
 
     createArchive(archiveResult.data as ArchiveQuery, actions);
@@ -61,7 +61,7 @@ const myCreatePages = async ({actions, graphql, reporter}: CreatePagesArgs) => {
 
     if (postResult.errors) {
         reporter.panicOnBuild(`Error while running post query.`);
-        return
+        return ;
     }
 
     createHomepage(postResult.data as PostQuery, actions);
