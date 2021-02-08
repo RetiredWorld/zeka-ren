@@ -1,7 +1,8 @@
 ---
 date: 2021-02-08
 title: 使用 Pulseaudio 同时接收安卓与 Linux 声音
-tags: []
+tags:
+  - Linux
 ---
 > 参考 [这篇](https://blog.megumifox.com/public/2019/02/06/%E7%94%A8pulseaudio%E5%B0%86%E7%94%B5%E8%84%91%E7%9A%84%E5%A3%B0%E9%9F%B3%E7%94%A8%E6%89%8B%E6%9C%BA%E6%94%BE%E5%87%BA%E6%9D%A5/)，按照教程基本就可以成功啦。
 
