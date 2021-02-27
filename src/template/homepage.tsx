@@ -20,9 +20,6 @@ const IndexPage: React.FC<PostContext> = ({ pageContext })=> {
     const [ year, month ] = data.yearMonth.split('-');
     const dateStr = `${year} 年 ${month} 月`;
 
-    data.nodes.forEach(it=>{
-        console.log(it.childMarkdownRemark.frontmatter.date);
-    });
     return (<>
         <SEO title={dateStr} />
         <Header title={dateStr} />

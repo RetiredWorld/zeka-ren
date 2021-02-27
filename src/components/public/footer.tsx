@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
     return <footer className="footer my-footer">
         <div className="content has-text-centered">
             <p>
-                Made with <FontAwesomeIcon icon={faHeart} /> by Zeka, 2020.
+                Made with <FontAwesomeIcon icon={faHeart} /> by Zeka, 2020-2021.
                 <br />
                 Powered by <a href="https://www.gatsbyjs.com/">Gatsbyjs</a>
                 <br />
