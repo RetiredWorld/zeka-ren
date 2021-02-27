@@ -6,8 +6,8 @@ require('disqusjs/dist/disqusjs.css');
 require('../assets/sass/main.scss');
 
 // trigger an immediate page refresh when an update is found
-export const onServiceWorkerUpdateReady = () => {
-    document.getElementById('my-message').classList.remove('is-invisible');
-};
+// export const onServiceWorkerUpdateReady = () => {
+//     document.getElementById('my-message').classList.remove('is-invisible');
+// };
 
 

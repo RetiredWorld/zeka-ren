@@ -5,7 +5,7 @@ import Background from '../components/public/background';
 import APlayer from '../components/public/aplayer';
 import Nav from '../components/public/nav';
 import Footer from '../components/public/footer';
-import Message from '../components/public/message';
+// import Message from '../components/public/message';
 
 
 const Layout: React.FC = ({ children }) => {
@@ -24,7 +24,7 @@ const Layout: React.FC = ({ children }) => {
             </div>
             <APlayer />
             <Tools />
-            <Message />
+            {/*<Message />*/}
         </div>
     </>);
 };
