@@ -31,7 +31,7 @@ const Tools: React.FC = () => {
             setPercent((isNaN(percent))?0: percent);
         };
 
-        window.addEventListener('scroll', scrollEvt, { passive: true });
+        window.addEventListener('scroll', scrollEvt);
         return ()=>{
             window.removeEventListener('scroll', scrollEvt);
         };

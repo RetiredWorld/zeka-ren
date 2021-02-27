@@ -24,6 +24,7 @@ const plugins: MyPlugin[] = [
     `gatsby-plugin-fontawesome-css`,
     `gatsby-transformer-json`,
     `gatsby-plugin-netlify-cms`,
+    `gatsby-plugin-no-sourcemaps`,
     {
         resolve: `gatsby-plugin-feed`,
         options: {
@@ -207,6 +208,23 @@ const plugins: MyPlugin[] = [
                     },
                 ],
             },
+        },
+    },
+    {
+        resolve: `gatsby-plugin-netlify`,
+        options: {
+            headers: {
+                '/*': [
+                    'X-XSS-Protection: 1; mode=block',
+                    'X-Content-Type-Options: nosniff',
+                    'strict-transport-security: max-age=63072000; includeSubDomains; preload',
+                ],
+            },
+            allPageHeaders: [], // option to add headers for all pages. `Link` headers are transformed by the below criteria
+            mergeSecurityHeaders: true, // boolean to turn off the default security headers
+            mergeLinkHeaders: true, // boolean to turn off the default gatsby js headers
+            mergeCachingHeaders: true, // boolean to turn off the default caching headers
+            generateMatchPathRewrites: true, // boolean to turn off automatic creation of redirect rules for client only paths
         },
     },
 ];
