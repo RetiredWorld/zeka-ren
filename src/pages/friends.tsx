@@ -73,7 +73,7 @@ const FriendsIntro: React.FC = () => {
 
 const Friends: React.FC<{data: IFriendsQuery}> = ({ data }) =>{
     return (<>
-        <SEO title="友链" />
+        <SEO title="友链" description="Zeka 的朋友们" />
         <Header title="友链" />
         <FriendsList friends={data.friendsJson.friends} />
         <FriendsIntro />

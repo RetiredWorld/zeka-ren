@@ -40,7 +40,7 @@ const SteamPage: React.FC = () => {
     }, []);
 
     return (<>
-        <SEO title="Steam Games" />
+        <SEO title="Steam Games" description="Zeka 在 Steam 上的游戏" />
         <Header title="Steam" />
         <div className="my-steam">
             <div className="my-steam__intro">

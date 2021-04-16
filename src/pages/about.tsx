@@ -26,7 +26,7 @@ const About: React.FC<{
     data: IAboutProps
 }> = ({ data }) => {
     return (<>
-        <SEO title="关于" />
+        <SEO title="关于" description="关于 Zeka 的记事本" />
         <Header title="关于" />
         <AboutContent content={data.file.childMarkdownRemark.html}/>
     </>);

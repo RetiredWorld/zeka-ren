@@ -21,7 +21,7 @@ const IndexPage: React.FC<PostContext> = ({ pageContext })=> {
     const dateStr = `${year} 年 ${month} 月`;
 
     return (<>
-        <SEO title={dateStr} />
+        <SEO title={dateStr} description={'归档: ' + dateStr} />
         <Header title={dateStr} />
         <Page data={pageContext} />
     </>);

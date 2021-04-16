@@ -7,9 +7,10 @@ import { Link } from 'gatsby';
 
 const NotFoundPage: React.FC = () => {
     return (<>
-        <SEO title="404" />
+        <SEO title="404" description="页面未找到" />
         <Header title="404" />
-        <Link to="/">返回首页</Link>
+        <p>It seems you go to wrong page.</p>
+        <Link to="/">Return to Homepage.</Link>
     </>);
 };
 

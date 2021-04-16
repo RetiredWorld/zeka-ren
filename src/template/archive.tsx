@@ -158,7 +158,7 @@ const Archive: React.FC<ArchiveContext> = ({ pageContext }) => {
     const sortedDate = sortObj.process();
 
     return (<>
-        <SEO title="归档"/>
+        <SEO title="归档" description="总归档"/>
         <Header title="归档" />
         <div className="archive-wrap">
             <ArchiveYear myDate={sortedDate} />
