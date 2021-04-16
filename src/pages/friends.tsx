@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { IFriendSingle, IFriendsQuery } from '../types/query/friends';
 
@@ -24,13 +24,18 @@ function shuffleSelf<T>(array: T[], size: number = null) {
 }
 
 const FriendsList: React.FC<{friends: IFriendSingle[]}> = ({ friends }) => {
-    shuffleSelf(friends);
+    const [ myFriends, setMyFriends ] = useState<IFriendSingle[]>(friends);
+    useEffect(() => {
+        setMyFriends(shuffleSelf(myFriends));
+    }, []);
+
     return (<div className="my-friends">
-        {friends.map((friend, index) => {
-            return (<a key={`${friend.name}_${index}`} href={friend.website}>
+        {myFriends.map((friend, index) => {
+            const key = `${friend.name}_${index}`;
+            return (<a key={key} href={friend.website}>
                 <div className="my-friends__item card">
                     <div className="my-friends__avatar is-clearfix" >
-                        <img src={friend.avatar? friend.avatar: '/static/images/avatar.jpg'} alt={friend.name}/>
+                        <img src={friend.avatar? friend.avatar: '/static/images/avatar.jpg'} alt={friend.name} />
                     </div>
                     <div className="my-friends__info is-clearfix">
                         <div className="my-friends__name">{friend.name}</div>
