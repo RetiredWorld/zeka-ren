@@ -49,12 +49,16 @@ PermitRootLogin no
 
 `Port` 修改 ssh 运行端口，以防止针对默认 22 端口的恶意扫描（这不代表修改端口就绝对安全，因为端口扫描仍然有可能试探出你的端口，但是能提高安全性）。
 
-`PermitRootLogin` 设置为 no 以阻止 root 的密码登陆，在设置这个参数前最好保证已经上传密钥到 root 账户，以免后续出现需要 root 登陆而没办法登陆的问题。
+`PermitRootLogin` 设置为 `no` 以阻止对 root 账户的任何登陆。设置为 `PermitPassword` 则表示允许证书等方式登陆。在设置这个参数前最好保证已经上传密钥到 root 账户，以免后续出现需要 root 登陆而没办法登陆的问题。
+
+安全起见，直接封禁 root 登陆是比较保险的方法。~~如果必须要使用 root，可以考虑 `sudo su`。~~
+
+如果无法登陆可能需要通过面板上去了。
 
 修改完后需要重启 sshd 服务：
 
 ```bash
-# maybe you need sudo
+# add sudo if you arent root
 systemctl restart sshd
 
 # for old Ubuntu
@@ -75,14 +79,16 @@ service sshd restart
 Host *
         ServerAliveCountMax 8
         ServerAliveInterval 12
-        LogLevel DEBUG
+        LogLevel INFO
 ```
 
 这主要避免 SSH 无故断开导致命令行卡死。
 
 前两项配置为每 12 秒发送一次心跳包来确认连接可用，如果连续 8 次心跳包发送失败，则认为连接断开。有了这两行，基本上你的 ssh 连接不会断开，也为下面的 `sshfs` 提供便利。
 
-`LogLevel DEBUG` 会在连接的时候打印 debug 信息（然而本身没有意义，因为我们并不调试 ssh），开启的好处是对于连接不太稳定的服务器，可以了解卡在哪里，否则 ssh 后没有反馈感觉有点难受。
+`LogLevel DEBUG` 会在连接的时候打印 debug 信息（然而本身没有意义，因为我们并不调试 ssh），开启的好处是对于连接不太稳定的服务器，可以了解卡在哪里，否则 ssh 后没有反馈感觉有点难受。坏处是会打印大量无关信息。所以还是关掉了。
+
+有时我们 SSH 卡住了或出现了其他 bug，但是不知道问题出在哪，可以通过 `-v`，`-vv`，`-vvv` 三个参数来进行不同等级 debug。
 
 要使用代理，常用设置为（假设代理位于 127.0.0.1:6666, 注意没有验证）：
 
