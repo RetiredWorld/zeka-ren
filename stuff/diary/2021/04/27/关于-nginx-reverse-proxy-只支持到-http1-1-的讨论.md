@@ -9,7 +9,7 @@ tags:
 在 [官网文档](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version) 查找发现，对于 `proxy_http_version` 只能支持到 1.1，而且默认开启的是 1.0。官方备注说明 1.1 是留给长连接（websocket 等）的，因此可以理解为如果没有长连接需求保留默认即可。那么反向代理的协议不同是否会带来影响？
 
 [官方邮件](https://mailman.nginx.org/pipermail/nginx/2015-December/049445.html) 给出了答案（添加了自己的理解）：
-- http2 的解决问题在于 tcp 的连接重用.对于端（edge）用户到服务器，光是三次握手都可能带来巨大开销，此时重用效果很明显。对于国外引用，往往 ping 100 以上是常态，此时更加明显。但是对于反向代理的服务，我们往往放在内网，延迟低于 1ms，重用不重用影响不大。([在这里](https://stackoverflow.com/questions/36471077/what-does-http-2-mean-for-a-reverse-proxy-server) 有所提到)
+- http2 的解决问题在于 tcp 的连接重用.对于端（edge）用户到服务器，光是三次握手都可能带来巨大开销，此时重用效果很明显。对于国外应用，往往 ping 100 以上是常态，此时更加明显。但是对于反向代理的服务，我们往往放在内网，延迟低于 1ms，重用不重用影响不大。([在这里](https://stackoverflow.com/questions/36471077/what-does-http-2-mean-for-a-reverse-proxy-server) 有所提到)
 - 如果上面只是对重用没有必要说明的话，那么后面这一条就直接说明不可能了。http2 只会建立一条 tcp 隧道，这不符合我们的代理模型（多个不同 session，多服务负载均衡）。
 
 > 在这里保存疑问，为什么 Nginx 不能与 upstream 建立多个持久 tcp 连接（http2），http 协议本身无状态，只需要将数据传输到代理端即可，这样似乎不会产生问题。
