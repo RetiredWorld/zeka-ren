@@ -21,6 +21,9 @@ Host name
 
 结果坏事了，这个 nc 指令既不能识别 `-X` 指令，对 `-x` 的解析也是错误的（出现 `Error: Couldn't resolve host "127.0.0.1:<port>` 报错）。
 
+> 印象中还有这个问题的是 unzip。由于恶臭 Windows 国内使用恶臭的国标编码，所以任何创建的压缩包默认是非 Unicode 编码的。而 `.zip` 文件本身没有任何用来标识编码的符号位。这直接导致了 Windows 压缩包在 Linux 乱码
+> 虽然 unzip 官方知道这个问题，但是为了惩治不遵守规范的 Win，故意不为 zip 添加指定编码选项。在国内遇到中文编码，还得安装其他版本的 unzip。~~更好的方法是一起 boycott Windows~~
+
 输入 `-h` 指令，发现根本没有 `-X` 选项。
 
 思考了一下，决定安装 bsd 版本的 netcat。
