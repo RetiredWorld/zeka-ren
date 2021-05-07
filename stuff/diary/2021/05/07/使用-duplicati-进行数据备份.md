@@ -33,21 +33,12 @@ sshfs [user@]host:[dir] mountpoint
 使用 docker 部署是最为快捷的方法。单容器也可以使用 docker-compose 方便的进行管理：
 
 ```yaml
-# we use raspberry pi here
-# officially support following architecture:
-# amd64
-# arm/v7
-# arm/64
-
 version: "3"
-
-volumes:
-        duplicati:
                            
 services:
         duplicati:
-        		# seems my upstream has some problem, change it to
-        		# latest if you're ok.
+                # seems my upstream has some problem, change it to
+        	# latest if you're ok.
                 image: duplicati/duplicati:canary
                 container_name: "duplicati"
                 # webui port
@@ -66,11 +57,13 @@ docker 在这里的缺点在于目录需要手动挂载，要保证其能正常�
 
 
 
-# 设置密码
+# 设置访问控制
 
 如果准备暴露在公网上，密码是必不可少的，你可以在 `settings` 中配置密码。为了安全，我额外添加了一层 `basic auth`。
 
 `basic auth` 必须保证在有证书下使用，否则传递的为明文密码。
+
+> 对于私人使用的服务，更好的方案是通过 ssh 隧道，这个之后再折腾了。
 
 Duplicati UI 还是很直观的，按照步骤一步一步设置即可。
 
@@ -86,6 +79,11 @@ Duplicati 本身提供了大量可定制的 `action`，用户可以在备份完�
 
 ```bash
 #!/bin/bash
+# check action type
+if [[ "$DUPLICATI__OPERATIONNAME" == "Backup" ]]
+then
+        exit(0)
+fi
 # check if success
 if [[ "$DUPLICATI__PARSED_RESULT" == "Success" ]]
 then
@@ -104,4 +102,16 @@ fi
 
 
 # 备份还原
+进入 `restore` 可以将文件还原到指定位置，按照操作进行即可。
+
+注意还原是不需要输入密码的，因为 admin 已经帮我们完成了解密。那么之前我们设置的加密到底在有什么用呢？我们打开备份位置，出现的都是 `.zip.aes` 文件（如果使用默认的 `aes-256` 加密的话）。而且在之前配置中我们设置了单个 volume 的大小为 `50M`，所以它被分到了多个不同大小的 volume 中。
+
+这样的话通过管理界面可以完成还原。但是如果备份页面不可用（或者数据库出现了问题），应该如何手动还原？
+[官方](https://duplicati.readthedocs.io/en/latest/appendix-b-how-the-restore-process-works/)有介绍 restore 过程，可以照着进行相应还原操作，这里解压 `.aes` 文件就需要之前的密钥了。
+
+> 这比较复杂，因为它不是我想象中的一个 `aes` 加密的 `.tar.gz` 文件，而是被分为了很多块。要进行完全解密首先得解压 `dlist` 文件，然后按照列表顺序进行组合。这个过程还可能遇到大文件的情况（比如部分大文件超过了 volume 大小，一个文件可能分散在不同的 volume 中），就需要结合不同情况进行处理了。
+
+总之，使用 Duplicati GUI 完成还原可以极大减小心智负担，GUI 不但提供方便的多备份管理，还做到仅还原部分文件等等操作。
+
+所以，正常使用的话，还是别随意手动修改配置文件吧。
 
