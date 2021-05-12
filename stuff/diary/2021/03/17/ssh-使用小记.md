@@ -125,3 +125,26 @@ sshfs /mount/point server:/folder/to/mount
 上述提到的修改 `ServerAliveInterval` 可以减少挂载磁盘无响应情况，从而避免命令行卡死。
 
 zsh 的补全能很好的处理远程挂载的磁盘。这是好事，同时也是坏事，因为在补全时需要 ssh 访问远程磁盘，可能导致在补全时出现卡顿。
+
+## ssh 端口转发
+转发分为本地转发与远端两种。简单来说，端口转发就是开通两台机器两个端口的连通，依据 ssh 发起对象分为本地与远程两种。
+利用 ssh 的良好加密特性，可以很好的进行内网穿透（需要配置好心跳与重试，否则在不稳定情况下可能出现连接不稳定的情况）。
+国内听得多的应用为 frp，但是 frp 要求每台服务器安装相同版本服务端或者客户端，比较苛刻。而大部分情况 ssh 是开箱即用的，使用上无疑方便很多。
+frp 的好处是可以通过配置文件进行配置，还有很多额外功能（比如证书支持等）。
+
+> 就安全性来说，配置好证书的 SSH 经过无数人的考验，往往比偏个人向开发的 frp 成熟，所以更推荐使用方便且安全的 SSH。此外， SSH 有漏洞发现最好尽早打上补丁修复。
+
+本地转发（将本地端口转发到远端）：
+```bash
+ssh -CTNL local_host:local_port:remote_host:remote_port root@server
+```
+
+转发到远端：
+```bash
+ssh -CTNR remote_host:remote_port:local_host:local_port root@server
+```
+
+此外，还能作为代理服务器使用（将指定端口的数据发送到远端某个端口）：
+```bash
+ssh -D 8080 root@proxy_machine -p 8081
+```
