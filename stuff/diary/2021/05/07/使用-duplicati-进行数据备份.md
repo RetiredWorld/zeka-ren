@@ -84,9 +84,9 @@ Duplicati 本身提供了大量可定制的 `action`，用户可以在备份完�
 ```bash
 #!/bin/bash
 # check action type
-if [[ "$DUPLICATI__OPERATIONNAME" == "Backup" ]]
+if [[ "$DUPLICATI__OPERATIONNAME" != "Backup" ]]
 then
-        exit(0)
+        exit 0
 fi
 # check if success
 if [[ "$DUPLICATI__PARSED_RESULT" == "Success" ]]
