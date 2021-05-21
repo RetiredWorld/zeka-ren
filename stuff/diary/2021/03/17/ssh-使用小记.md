@@ -44,12 +44,15 @@ ssh-copy-id root@192.168.1.12
 ```text
 # edit your port
 Port 1111
-PermitRootLogin no
+PermitRootLogin prohibit-password
+X11Forwarding yes
 ```
 
 `Port` 修改 ssh 运行端口，以防止针对默认 22 端口的恶意扫描（这不代表修改端口就绝对安全，因为端口扫描仍然有可能试探出你的端口，但是能提高安全性）。
 
-`PermitRootLogin` 设置为 `no` 以阻止对 root 账户的任何登陆。设置为 `PermitPassword` 则表示允许证书等方式登陆。在设置这个参数前最好保证已经上传密钥到 root 账户，以免后续出现需要 root 登陆而没办法登陆的问题。
+`PermitRootLogin` 设置为 `no` 以阻止对 root 账户的任何登陆。设置为 `prohibit-password` 则表示不允许密码登陆。root 权限过大，并很容易受到 ssh 爆破，所以设置为 `no` 是比较合理的选择。如果有登陆需要，可以在上传证书后再设置为 `prohibit-password`。
+
+`X11Forwarding` 将允许 X11 转发。虽然我们可能不使用 X11 的桌面转发功能，但是通过 X11 转发我们可以配置系统剪切板与 ssh host 同步，可以免去一些拿鼠标复制粘贴的麻烦。
 
 安全起见，直接封禁 root 登陆是比较保险的方法。~~如果必须要使用 root，可以考虑 `sudo su`。~~
 
@@ -126,6 +129,9 @@ sshfs /mount/point server:/folder/to/mount
 
 zsh 的补全能很好的处理远程挂载的磁盘。这是好事，同时也是坏事，因为在补全时需要 ssh 访问远程磁盘，可能导致在补全时出现卡顿。
 
+bash 在输入路径的时候也偶尔有卡顿，可能与 prefetch 有关。
+
+
 ## ssh 端口转发
 转发分为本地转发与远端两种。简单来说，端口转发就是开通两台机器两个端口的连通，依据 ssh 发起对象分为本地与远程两种。
 利用 ssh 的良好加密特性，可以很好的进行内网穿透（需要配置好心跳与重试，否则在不稳定情况下可能出现连接不稳定的情况）。
@@ -148,3 +154,9 @@ ssh -CTNR remote_host:remote_port:local_host:local_port root@server
 ```bash
 ssh -D 8080 root@proxy_machine -p 8081
 ```
+
+
+## ssh 炸弹
+~~虽然这很缺德，但是很好玩。~~
+炸弹有很多种类，简单说，对那些邪恶的爆破者一点点惩罚（PS，现在防止炸弹的技术也很成熟了，所以很可能并没有效果）。
+感兴趣可以自己搜着玩玩。
