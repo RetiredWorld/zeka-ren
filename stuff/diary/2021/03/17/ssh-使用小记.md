@@ -44,17 +44,24 @@ ssh-copy-id root@192.168.1.12
 ```text
 # edit your port
 Port 1111
-PermitRootLogin no
+PermitRootLogin prohibit-password
+X11Forwarding yes
 ```
 
 `Port` 修改 ssh 运行端口，以防止针对默认 22 端口的恶意扫描（这不代表修改端口就绝对安全，因为端口扫描仍然有可能试探出你的端口，但是能提高安全性）。
 
-`PermitRootLogin` 设置为 no 以阻止 root 的密码登陆，在设置这个参数前最好保证已经上传密钥到 root 账户，以免后续出现需要 root 登陆而没办法登陆的问题。
+`PermitRootLogin` 设置为 `no` 以阻止对 root 账户的任何登陆。设置为 `prohibit-password` 则表示不允许密码登陆。root 权限过大，并很容易受到 ssh 爆破，所以设置为 `no` 是比较合理的选择。如果有登陆需要，可以在上传证书后再设置为 `prohibit-password`。
+
+`X11Forwarding` 将允许 X11 转发。虽然我们可能不使用 X11 的桌面转发功能，但是通过 X11 转发我们可以配置系统剪切板与 ssh host 同步，可以免去一些拿鼠标复制粘贴的麻烦。
+
+安全起见，直接封禁 root 登陆是比较保险的方法。~~如果必须要使用 root，可以考虑 `sudo su`。~~
+
+如果无法登陆可能需要通过面板上去了。
 
 修改完后需要重启 sshd 服务：
 
 ```bash
-# maybe you need sudo
+# add sudo if you arent root
 systemctl restart sshd
 
 # for old Ubuntu
@@ -75,14 +82,18 @@ service sshd restart
 Host *
         ServerAliveCountMax 8
         ServerAliveInterval 12
-        LogLevel DEBUG
+        LogLevel INFO
 ```
 
 这主要避免 SSH 无故断开导致命令行卡死。
 
 前两项配置为每 12 秒发送一次心跳包来确认连接可用，如果连续 8 次心跳包发送失败，则认为连接断开。有了这两行，基本上你的 ssh 连接不会断开，也为下面的 `sshfs` 提供便利。
 
-`LogLevel DEBUG` 会在连接的时候打印 debug 信息（然而本身没有意义，因为我们并不调试 ssh），开启的好处是对于连接不太稳定的服务器，可以了解卡在哪里，否则 ssh 后没有反馈感觉有点难受。
+`LogLevel DEBUG` 会在连接的时候打印 debug 信息（然而本身没有意义，因为我们并不调试 ssh），开启的好处是对于连接不太稳定的服务器，可以了解卡在哪里，否则 ssh 后没有反馈感觉有点难受。坏处是会打印大量无关信息。
+
+设置为 `INFO` 就好啦。
+
+有时我们 SSH 卡住了或出现了其他 bug，但是不知道问题出在哪，可以通过 `-v`，`-vv`，`-vvv` 三个参数来进行不同等级 debug。
 
 要使用代理，常用设置为（假设代理位于 127.0.0.1:6666, 注意没有验证）：
 
@@ -98,7 +109,14 @@ ProxyCommand nc -x 127.0.0.1:6666 %h %p
 
 ## sshfs 与 scp
 
-ssh 除了登陆服务器，还能进行文件传输。有了他们就可以摆脱使用 `filezilla` 等 ftp 文件的麻烦，而专心在命令行完成我们的操作。他们的协议底层是 `ftp`，但是利用 ssh 进行了授权。
+ssh 除了登陆服务器，还能进行文件传输。有了他们就可以摆脱使用 `filezilla` 等 ftp 文件的麻烦，而专心在命令行完成我们的操作。他们的协议底层是 `sftp`。虽然都是基于 `sftp` 协议，但是他们功能并不是等价的。
+
+`scp` 可以双向进行，也就是既可以将本地文件传到远端，也可以将远端文件传到本地。但是 `sshfs` 只能单向挂载，也就是说只能将远端挂载到本地，将本地挂载到本地是不可能的。
+
+如果一定要推送本地目录，只能考虑在本地开启 sshd 服务器，并使远端服务器建立连接。这在公网环境可以试一试，但是对于强 NAT 模型，这并不是总是可用。
+
+Linux 体系常用的另一个 NetworkFS 工具是 nfs。相比来说，nfs 在不使用加密的情况下读写性能比 sshfs 更快，但如果加入与 sshfs 一样的加密，性能与 sshfs 相同。在我的使用场景中（没有 4K 高码率强迫症），使用 sshfs 观看 22 分钟（700M）的番剧不会出现卡顿。同时 sshfs 更加方便配置。因此使用 sshfs 就足够了。
+
 
 从本地上传一个文件到 Host 为 server 的服务器：
 
@@ -119,3 +137,35 @@ sshfs /mount/point server:/folder/to/mount
 上述提到的修改 `ServerAliveInterval` 可以减少挂载磁盘无响应情况，从而避免命令行卡死。
 
 zsh 的补全能很好的处理远程挂载的磁盘。这是好事，同时也是坏事，因为在补全时需要 ssh 访问远程磁盘，可能导致在补全时出现卡顿。
+
+bash 在输入路径的时候也偶尔有卡顿，可能与 prefetch 有关。
+
+
+## ssh 端口转发
+转发分为本地转发与远端两种。简单来说，端口转发就是开通两台机器两个端口的连通，依据 ssh 发起对象分为本地与远程两种。
+利用 ssh 的良好加密特性，可以很好的进行内网穿透（需要配置好心跳与重试，否则在不稳定情况下可能出现连接不稳定的情况）。
+国内听得多的应用为 frp，但是 frp 要求每台服务器安装相同版本服务端或者客户端，比较苛刻。而大部分情况 ssh 是开箱即用的，使用上无疑方便很多。
+frp 的好处是可以通过配置文件进行配置，还有很多额外功能（比如证书支持等）。
+
+> 就安全性来说，配置好证书的 SSH 经过无数人的考验，往往比偏个人向开发的 frp 成熟，所以更推荐使用方便且安全的 SSH。此外， SSH 有漏洞发现最好尽早打上补丁修复。
+
+本地转发（将本地端口转发到远端）：
+```bash
+ssh -CTNL local_host:local_port:remote_host:remote_port root@server
+```
+
+转发到远端：
+```bash
+ssh -CTNR remote_host:remote_port:local_host:local_port root@server
+```
+
+此外，还能作为代理服务器使用（将指定端口的数据发送到远端某个端口）：
+```bash
+ssh -D 8080 root@proxy_machine -p 8081
+```
+
+
+## ssh 炸弹
+~~虽然这很缺德，但是很好玩。~~
+炸弹有很多种类，简单说，对那些邪恶的爆破者一点点惩罚（PS，现在防止炸弹的技术也很成熟了，所以很可能并没有效果）。
+感兴趣可以自己搜着玩玩。

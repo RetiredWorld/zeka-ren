@@ -18,12 +18,6 @@
       "avatar": "https://www.dogcraft.top/avatar.jpg"
     },
     {
-      "name": "蝉时雨",
-      "website": "https://chanshiyu.com/",
-      "description": "蝉鸣如雨，花宵道中",
-      "avatar": "https://cdn.jsdelivr.net/gh/chanshiyucx/yoi/blog/avatar.jpg"
-    },
-    {
       "name": "北熙宝宝",
       "description": "北熙赤ちゃん",
       "website": "https://blog.beixibaobao.com",
@@ -51,6 +45,30 @@
       "name": "FGHRSH",
       "avatar": "https://gravatar.fghrsh.net/avatar/0c5d77513a08b8c3e38336859b53b027?s=80&d=mm&r=G",
       "description": "FGHRSH 的博客"
+    },
+    {
+      "name": "糖菓·部落",
+      "description": "Never drown the flame of hope",
+      "avatar": "https://cdn.jsdelivr.net/gh/Candinya/Candinya/img/candinya.webp",
+      "website": "https://candinya.com/"
+    },
+    {
+      "name": "ADD-SP",
+      "website": "https://www.addesp.com",
+      "avatar": "https://www.addesp.com/avatar",
+      "description": "\"记录 & 分享 & 感受\""
+    },
+    {
+      "name": "极光萝卜",
+      "website": "https://ijglb.com/",
+      "avatar": "https://cdn.jsdelivr.net/gh/ijglb/ijglb.github.io/image/avatar.jpg",
+      "description": "匚凵冂"
+    },
+    {
+      "website": "https://blog.cloudyun.xyz/",
+      "name": "云蕴博客",
+      "description": "我们所过的每个平凡的日常，也许就是连续发生的奇迹。",
+      "avatar": "https://ttc.cloudyun.xyz/content/images/users/CeW/av_1596874371.jpg"
     }
   ]
 }
