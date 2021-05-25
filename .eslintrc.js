@@ -43,5 +43,9 @@ module.exports = {
         'block-spacing': [ 1, 'always' ],
         'switch-colon-spacing': [ 1, { 'after': true, 'before': false } ],
         'key-spacing': [ 1, { 'beforeColon': false, 'afterColon': true } ],
+        'no-unused-vars': 'off',
+        '@typescript-eslint/no-unused-vars': [
+          'error',
+        ],
     },
 };

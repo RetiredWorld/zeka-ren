@@ -2,10 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 import { IFriendSingle, IFriendsQuery } from '../types/query/friends';
 
-import Header from '../components/public/header';
-import SEO from '../components/public/seo';
-
 import { graphql } from 'gatsby';
+import { IMetaInfo } from '../layout/meta';
 
 function shuffleSelf<T>(array: T[], size: number = null) {
     let index = -1;
@@ -71,10 +69,19 @@ const FriendsIntro: React.FC = () => {
     </div>);
 };
 
+export const friendsMetaInfo: IMetaInfo = {
+    reg: /\/friends/,
+    genInfo() {
+        return {
+            title: '友链',
+            navTitle: '友链',
+            description: 'Zeka 的朋友们',
+        };
+    },
+};
+
 const Friends: React.FC<{data: IFriendsQuery}> = ({ data }) =>{
     return (<>
-        <SEO title="友链" description="Zeka 的朋友们" />
-        <Header title="友链" />
         <FriendsList friends={data.friendsJson.friends} />
         <FriendsIntro />
         <FriendsComments />

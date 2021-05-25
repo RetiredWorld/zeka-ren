@@ -7,11 +7,10 @@ import {
     ParseDateRes,
 } from '../types/query/archive';
 
-import SEO from '../components/public/seo';
-import Header from '../components/public/header';
 import { Link } from 'gatsby';
 
 import { getPageUrl } from './homepage';
+import { IMetaInfo } from '../layout/meta';
 
 function parseStr(date: string | number, length: number = 2): string {
     let strDate = date.toString();
@@ -153,17 +152,24 @@ const ArchiveYear: React.FC<{myDate: ISortedItemYear }> = ({ myDate }) => {
     </>);
 };
 
+export const archiveMetaInfo: IMetaInfo = {
+    reg: /\/archive/,
+    genInfo() {
+        return {
+            title: '归档',
+            navTitle: '归档',
+            description: '总归档',
+        };
+    },
+};
+
 const Archive: React.FC<ArchiveContext> = ({ pageContext }) => {
     const sortObj = new SortDate(pageContext.data.allFile.nodes);
     const sortedDate = sortObj.process();
 
-    return (<>
-        <SEO title="归档" description="总归档"/>
-        <Header title="归档" />
-        <div className="archive-wrap">
+    return (<div className="archive-wrap">
             <ArchiveYear myDate={sortedDate} />
-        </div>
-    </>);
+        </div>);
 };
 
 export default Archive;

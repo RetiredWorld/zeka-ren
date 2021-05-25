@@ -1,4 +1,4 @@
-import React, { createRef, useRef } from 'react';
+import React, { createRef } from 'react';
 
 const STEAM_BASE_URL = 'https://steamcommunity.com/app';
 const STEAM_IMAGE_URL = 'https://steamcdn-a.akamaihd.net/steam/apps';

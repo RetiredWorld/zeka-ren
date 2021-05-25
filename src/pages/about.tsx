@@ -1,8 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import SEO from '../components/public/seo';
-import Header from '../components/public/header';
+import { IMetaInfo } from '../layout/meta';
 
 interface IAboutProps {
     file: {
@@ -22,14 +21,21 @@ const AboutContent: React.FC<{
     </div>);
 };
 
+export const aboutMetaData: IMetaInfo = {
+    reg: /\/about/,
+    genInfo() {
+        return {
+            title: '关于',
+            navTitle: '关于',
+            description: '关于 Zeka 的记事本',
+        };
+    },
+};
+
 const About: React.FC<{
     data: IAboutProps
 }> = ({ data }) => {
-    return (<>
-        <SEO title="关于" description="关于 Zeka 的记事本" />
-        <Header title="关于" />
-        <AboutContent content={data.file.childMarkdownRemark.html}/>
-    </>);
+    return (<AboutContent content={data.file.childMarkdownRemark.html}/>);
 };
 
 export default About;

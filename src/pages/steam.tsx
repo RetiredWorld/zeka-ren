@@ -1,8 +1,7 @@
 import React, { Dispatch, useEffect, useState } from 'react';
 
-import Header from '../components/public/header';
-import SEO from '../components/public/seo';
 import SteamComponent from '../components/page/steam/steam-component';
+import { IMetaInfo } from '../layout/meta';
 
 const STEAM_ALL_URL = 'https://steaminfo.mmx223223.workers.dev';
 const STEAM_RECENT_URL = 'https://steaminfo.mmx223223.workers.dev?type=recent';
@@ -24,6 +23,18 @@ const initData: ISteamData = {
     },
 };
 
+export const steamMetaInfo: IMetaInfo = {
+    reg: /\/steam/,
+    genInfo() {
+
+        return {
+            title: 'Steam Games',
+            description: 'Zeka 在 Steam 上的游戏',
+            navTitle: 'Steam',
+        };
+    },
+};
+
 const SteamPage: React.FC = () => {
 
     const [ data, setData ] = useState<ISteamData>(initData);
@@ -39,10 +50,7 @@ const SteamPage: React.FC = () => {
         fetchData(STEAM_RECENT_URL, recentSetData);
     }, []);
 
-    return (<>
-        <SEO title="Steam Games" description="Zeka 在 Steam 上的游戏" />
-        <Header title="Steam" />
-        <div className="my-steam">
+    return (<div className="my-steam">
             <div className="my-steam__intro">
                 <p>最近({(recentGames.length === 0)?'加载中':recentGames.length})</p>
             </div>
@@ -59,8 +67,7 @@ const SteamPage: React.FC = () => {
                     return (<SteamComponent key={game.appid} appId={game.appid} name={game.name} time={game.playtime_forever} />);
                 })}
             </div>
-        </div>
-    </>);
+        </div>);
 };
 
 export default SteamPage;
