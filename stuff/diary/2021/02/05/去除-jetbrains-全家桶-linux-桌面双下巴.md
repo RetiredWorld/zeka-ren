@@ -19,3 +19,11 @@ images:
 安装插件 [JavaFX Runtime for Plugins](https://plugins.jetbrains.com/plugin/14250-javafx-runtime-for-plugins),重启 IDEA 即可。
 
 效果见图二
+
+那么，还能不能再去掉一层呢？~~资本家还能不能进一步剥削呢？~~
+- 在 KDE 桌面下，使用 `Win+H` 可以隐藏边框。通过这种方式可以使编辑器多显示一行代码。
+- Jetbrains 全家桶还能将周围边框隐藏，从而再多获取半行空间。需要使用边框时双击 `Alt`（第二下需要按住不放） 即可重新呼出，松开即可重新释放。
+- 如果你愿意，其实最顶上的自定义 header 也可以干掉（现在的 Windows 用户常干的事）。但是我有频繁查看内存与 CPU 占用的习惯，因此一般是不隐藏的。
+
+
+~~《为了节省空间，我说不定连边框都能干掉》~~
