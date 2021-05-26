@@ -8,6 +8,8 @@ import {
 const timeout = 300;
 const getTransitionStyles = {
   entering: {
+    position: 'absolute',
+    maxWidth: '100%',
     opacity: 0,
   },
   entered: {

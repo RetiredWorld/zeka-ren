@@ -13,8 +13,7 @@ import Meta from './meta';
 
 const Layout: React.FC<PageProps> = ({ children, location }) => {
 
-    return (<>
-        <div className="my-layout">
+    return (<div className="my-layout">
             <Background />
             <Nav />
             <div className="container">
@@ -33,8 +32,7 @@ const Layout: React.FC<PageProps> = ({ children, location }) => {
             <APlayer />
             <Tools />
             {/*<Message />*/}
-        </div>
-    </>);
+        </div>);
 };
 
 export default Layout;

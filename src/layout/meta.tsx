@@ -39,30 +39,39 @@ metaInfoList.push({
   },
 });
 
-const Meta: React.FC<{children: {key: string}}> = (children) => {
+export interface IURI {
+  props: {
+    location: {
+      pathname: string
+    }
+  }
+}
+
+const Meta: React.FC<{children: IURI}> = (children) => {
   let SEOElement: React.ReactElement;
   let HeaderElement: React.ReactElement;
 
   const child = children.children;
+  const pathname = child.props.location.pathname;
 
   for (const meta of metaInfoList) {
     let isTrue = false;
     if (Array.isArray(meta.reg)) {
       for (const metaReg of meta.reg) {
-        if (metaReg.test(child.key)) {
+        if (metaReg.test(pathname)) {
           isTrue = true;
           break;
         }
       }
     } else {
-      if (meta.reg.test(child.key)) {
+      if (meta.reg.test(pathname)) {
         isTrue = true;
       }
     }
 
     if (!isTrue) continue;
 
-    const metaInfo = meta.genInfo(child.key, child);
+    const metaInfo = meta.genInfo(pathname, child);
     SEOElement = (<SEO title={metaInfo.title} description={metaInfo.description}/>);
     HeaderElement = (<Header title={metaInfo.navTitle}/>);
     break;

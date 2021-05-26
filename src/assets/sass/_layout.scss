@@ -64,6 +64,7 @@ a {
 
 .my-container {
   display: flex;
+  position: relative;
   flex-direction: column;
   background: #f6f6f6;
   min-height: 100vh;
@@ -72,6 +73,7 @@ a {
   width: 100%;
 
   & > .my-content {
+    position: relative;
     display: flex;
     flex-direction: column;
     flex: 1;

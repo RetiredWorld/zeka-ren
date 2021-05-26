@@ -6,7 +6,7 @@ import Page from '../components/page/index/page';
 import { IMetaInfo } from '../layout/meta';
 
 export const homepageMetaInfo: IMetaInfo = {
-    reg: [ /^\/$/, /\/\d*\/\d*/ ],
+    reg: [ /^\/$/, /\/\d+\/\d+/ ],
     genInfo(key: string, { props }: { props: PostContext }){
         const yearData = props.pageContext.data.yearMonth;
         let [ year, month ] = yearData.split('-');
