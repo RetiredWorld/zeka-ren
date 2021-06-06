@@ -31,7 +31,7 @@ const Nav: React.FC = () => {
       <NavItem icon={faLink} link="/about" text="关于" inputRef={inputRef}/>
       <NavItem icon={faCat} link="/friends" text="朋友" inputRef={inputRef}/>
       <NavItem icon={faArchive} link="/archive" text="归档" inputRef={inputRef}/>
-      <NavItem icon={faSteam} link="/steam" text="Steam" inputRef={inputRef}/>
+      <NavItem icon={faSteam} link="/steam" text="蒸汽" inputRef={inputRef}/>
       <li><a className='rss' target='_blank'  title='zeka 的 flag 订阅' href="/rss.xml"><span className="icon"><FontAwesomeIcon icon={faWifi} /></span>订阅</a></li>
     </ul>
   </nav>);

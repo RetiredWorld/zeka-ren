@@ -5,7 +5,7 @@
 @import "components/message";
 
 html{
-  scroll-behavior: smooth;
+  //scroll-behavior: smooth;
 }
 
 body {
@@ -33,7 +33,7 @@ a {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #fe9600;
+  background: $primary;
 }
 
 .my-background {
@@ -46,7 +46,8 @@ a {
   background: #151515;
 
   @include tablet() {
-    background: url("/static/images/bg.jpg"), #151515;
+    //background: url("https://touhoucannonball.com/manga/assets/img/bg.png"), pink;
+    //background: url("/static/images/bg.jpg"), #151515;
   }
 }
 
@@ -93,6 +94,11 @@ a {
     padding: 2.5rem 3.5rem .5rem;
     width: 70%;
     max-width: 768px;
+  }
+
+  @include fullhd() {
+    width: 80%;
+    max-width: 1024px;
   }
 
 }

@@ -5,11 +5,19 @@
   font-size: 90%;
   border-radius: 4px;
   color: #c7254e;
+
   background-color: #f9f2f4;
   white-space: initial;
 
   &::selection {
     background: $secondary;
+  }
+}
+
+.pink-theme {
+  %normal-code {
+    color: inherit;
+    background: rgba(115, 125, 140, 0.17);
   }
 }
 

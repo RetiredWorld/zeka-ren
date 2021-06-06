@@ -23,9 +23,9 @@
   border-left: 3.5px solid $primary;
   padding-left: .5rem;
   margin-bottom: .2rem;
-  cursor: pointer;
 
   &__icon {
+    cursor: pointer;
     position: absolute;
     font-size: $font-size-huge;
     transition: opacity .3s;

@@ -13,7 +13,7 @@ function yearPastPercent(): number{
     const n1 = Date.parse((new Date(year,1-1,1)).toDateString());
     const n2 = Date.parse((new Date()).toDateString());
     const pDay = (n2-n1)/(1000 * 60 * 60 * 24);
-    return Math.ceil(pDay/tDay*10000)/100;
+    return 100 - Math.ceil(pDay/tDay*10000)/100;
 }
 
 const Header: React.FC<HeaderProp> = (prop) => {
@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProp> = (prop) => {
     const [ percent ] = useState(yearPastPercent());
 
     return (<header className="my-header">
-            <h1 ref={headerRef} className="my-header-title" time-str={`今年已经虚度了 ${percent}%`} style={{
+            <h1 ref={headerRef} className="my-header-title" time-str={`今年还剩 ${percent}%`} style={{
                 [ '--time-percent' as any]: percent / 100,
             }}><Link className="my-header__link" to="/">Zeka 的记事本</Link></h1>
             <span className="my-header-sub">{prop.title}</span>

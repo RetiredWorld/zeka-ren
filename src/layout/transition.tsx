@@ -8,7 +8,6 @@ import {
 const timeout = 300;
 const getTransitionStyles = {
   entering: {
-    position: 'absolute',
     maxWidth: '100%',
     opacity: 0,
   },
@@ -17,7 +16,6 @@ const getTransitionStyles = {
     opacity: 1,
   },
   exiting: {
-    transition: `opacity ${timeout}ms ease-in-out`,
     opacity: 0,
   },
 };
@@ -35,15 +33,15 @@ const Transition: React.FC<ITransitionProps> = ({ children, pathname }) => {
                            exit: timeout,
                          }}
         >
-          {status => (
-            <div
+          {status => {
+            return (<div
               style={{
                 ...getTransitionStyles[status],
               }}
             >
               {children}
-            </div>
-          )}
+            </div>);
+          }}
         </ReactTransition>
       </TransitionGroup>
     );

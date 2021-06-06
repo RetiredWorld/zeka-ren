@@ -1,3 +1,5 @@
+$symbol-height: 42px;
+
 .side-tool-wrap {
   position: fixed;
   z-index: 1;
@@ -6,22 +8,24 @@
 }
 
 .side-tool-main{
-  //box-sizing: content-box;
   position: relative;
   border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
+  width: $symbol-height;
+  height: $symbol-height;
   background-color: rgba(89, 89, 89, 80%);
   line-height: 3rem;
   text-align: center;
   margin: 0 auto;
   color: white;
-
+  box-shadow: inset 0 0 10px #000;
   cursor: pointer;
 
   &__text {
     position: absolute;
     width: 100%;
+    height: 100%;
+    font-size: 17px;
+    line-height: $symbol-height;
   }
 
   @include mobile() {
@@ -29,59 +33,5 @@
     height: 2.5rem;
     line-height: 2.5rem;
     font-size: 120%;
-  }
-}
-
-.side-tool-items{
-  text-align: center;
-  margin: 0 auto;
-}
-
-.side-tool-item{
-  z-index: -1;
-  position: absolute;
-  width: 2.4rem;
-  left: .5rem;
-  top: .5rem;
-  height: 2.4rem;
-  background-color: rgba(89, 89, 89, 80%);
-  border-radius: 50%;
-  line-height: 2.4rem;
-  font-size: 1rem;
-  opacity: 0;
-  cursor: pointer;
-
-  transition: .4s cubic-bezier(0,0,.382,1.618);
-  transition-property: transform,opacity;
-
-  @include mobile() {
-    width: 2rem;
-    height: 2rem;
-    line-height: 2rem;
-    font-size: 90%;
-  }
-
-}
-
-.active{
-  .side-tool-item{
-    opacity: 1;
-    color: white;
-
-    &:hover {
-      color: inherit;
-    }
-
-    &:nth-child(1){
-      transform: translate3d(0,-160%,0);
-    }
-
-    &:nth-child(2){
-      transform: translate3d(-120%,-120%,0);
-    }
-
-    &:nth-child(3){
-      transform: translate3d(-160%,0,0);
-    }
   }
 }

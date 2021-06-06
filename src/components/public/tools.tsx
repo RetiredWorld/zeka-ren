@@ -1,59 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faChevronDown, faWrench, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+import { LayoutContextConsumer } from '../../layout/context';
 
-function scroll2Position(isTop=false){
-    if (isTop){
-        window.scrollTo(0, 0);
-    } else {
-        window.scrollTo(0, document.body.scrollHeight);
-    }
-}
+export type IThemeMode = 'light' | 'dark';
 
-function getPercent() {
-    const scrollTop = window.scrollY;
-    const docHeight = document.body.offsetHeight;
-    const winHeight = window.innerHeight;
-    const scrollPercent = (scrollTop) / (docHeight - winHeight);
-
-    return Math.round(scrollPercent * 100);
-}
+type IconName = typeof faSun | typeof faMoon;
 
 const Tools: React.FC = () => {
 
-    const [ isActive, setIsActive ] = useState(false);
-    const [ percent, setPercent ] = useState(0);
+    const [ hasMounted, setHasMounted ] = useState<boolean>(false);
+    const [ iconName, setIconName ] = useState<IconName>(typeof MyTheme === 'undefined' ? faSun : (MyTheme.themeMode === 'light') ? faMoon : faSun);
+    useEffect(() => {
+      setHasMounted(true);
+    }, []);
+    if (!hasMounted) return null;
 
-    useEffect(()=>{
-        const scrollEvt = () => {
-            const percent = getPercent();
-            setPercent((isNaN(percent))?0: percent);
-        };
 
-        window.addEventListener('scroll', scrollEvt);
-        return ()=>{
-            window.removeEventListener('scroll', scrollEvt);
-        };
-    });
+    return <LayoutContextConsumer>
+        {({ theme }) => {
+            function themeHandler() {
+                if (theme.themeMode === 'light') {
+                    theme.setThemeMode('dark');
+                    document.body.classList.remove('pink-theme');
+                    MyTheme.backgroundEle.style.background = typeof MyTheme === 'undefined' ? 'white' : MyTheme.themeBackground['dark'];
+                    setIconName(faSun);
+                } else {
+                    theme.setThemeMode('light');
+                    document.body.classList.add('pink-theme');
+                    MyTheme.backgroundEle.style.background = typeof MyTheme === 'undefined' ? 'white' : MyTheme.themeBackground['light'];
+                    setIconName(faMoon);
+                }
+            }
+            return (<div className="side-tool-wrap">
+                <div className="side-tool-main is-invisible-mobile" onClick={themeHandler}>
+                    <div className="side-tool-main__text"><FontAwesomeIcon icon={iconName} /></div>
+                </div>
+            </div>);
+        }}
+    </LayoutContextConsumer>
 
-    return (<div className="side-tool-wrap">
-        <div className="side-tool-main" onClick={()=>{setIsActive(!isActive);}}>
-            <div className="is-invisible-tablet side-tool-main__text"><FontAwesomeIcon icon={faWrench} /></div>
-            <div className="is-invisible-mobile  side-tool-main__text">{percent}%</div>
-            <div className={`side-tool-items ${isActive?'active': null}`}>
-                <span className="side-tool-item" onClick={()=>scroll2Position(true)}>
-                    <FontAwesomeIcon icon={faChevronUp} />
-                </span>
-                <span className="side-tool-item">
-                    <FontAwesomeIcon icon={faSearch} />
-                </span>
-                <span className="side-tool-item" onClick={()=>scroll2Position(false)}>
-                    <FontAwesomeIcon icon={faChevronDown} />
-                </span>
-            </div>
-        </div>
-    </div>);
 };
 
 export default Tools;
