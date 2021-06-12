@@ -1,12 +1,12 @@
 ---
 date: 2021-05-27
-title: Jetbrains 配合 IdeaVIm 实现简单键盘流
+title: Jetbrains 配合 IdeaVim 实现简单键盘流
 tags:
   - Linux
   - Vim
   - IDE
 ---
->  这将成为一篇长文，显然只要我继续需要书写代码，就会一直更下去。
+> 由于水平有限，还需要大量完善
 >
 > 目前收获最大的文章是 [这一篇](https://learnku.com/articles/22806)，非常感谢这一篇文章使得我对 IDE 的使用更加熟练 ~~已经离不开 JB 了（指 Jetbrains）~~。
 
@@ -72,7 +72,7 @@ const THIS_IS_A_VARY_LONG_VARIABLE = 1;
 
 
 
-# 搜索！
+# 搜索
 
 之后小节都是使用 JetBrains 家编辑器，并配合了 IdeaVim。
 
