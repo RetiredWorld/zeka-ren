@@ -3,6 +3,8 @@ date: 2021-07-30
 title: 使用 Docker 部署 anki-sync-server
 tags:
   - Docker
+  - Nginx
+  - Linux
 ---
 本来 Docker 部署应该是一件很舒服的事情，并没有什么好说的。但是我遇到了无数迷惑的问题。
 > 总结为：除非脑子不好，否则不要自己用 docker 部署这玩意。
@@ -108,7 +110,9 @@ index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 要在 Ankidroid 上正常使用，必须 “正确” 配置 Nginx。
 Ankidroid 似乎对 http2 支持有一定问题，同步媒体文件时会跳出 `okhttp http2 NO_ERROR` 错误。但是 Ankidroid 又强制要求 ssl 证书，所以 Nginx 是不可避免的。
 
-要正确关闭 Nginx http2 有一个小问题。一个端口不能同时使用 http1.1 与 http2.所以如果你打算在 80 443 端口开启 http2（其他服务） ，并同时使用 `anki-sync-server` 的话，你的唯一选择是更换端口（比如 444）.
+要正确关闭 Nginx http2 有一个小问题。一个端口不能同时使用 http1.1 与 http2.所以如果你打算在 80 443 端口开启 http2（其他服务） ，并同时使用 `anki-sync-server` 的话，你的唯一选择是更换端口（比如 444）。
+
+> 推测是 http2 与 websocket 不兼容导致，还需要之后测试。
 
 # 坑五，文件持久化
 自己构建的镜像无法实现文件持久化，因为文件目录已经发生了改变。所以 README 中提到的 `docker-compose.yml` 挂载是有问题的。
@@ -124,4 +128,12 @@ Ankidroid 似乎对 http2 支持有一定问题，同步媒体文件时会跳出
 一个问题在于 `auth.db` 最开始无法创建，所以可行的办法是首先挂载目录，等进入容器添加用户后再移动道挂载目录中（也就是从容器中拿到宿主机环境中），然后再修改 `docker-compose.yml` 文件启动。
 
 > `/opt/ankisyncd/` 下还有一个 `session.db` 文件，用于记录登录凭证，如果有必要也可以照前面拿出 `auth.db` 步骤拿出来。但是这个是用于登录 session 会话，不挂载不影响使用。唯一影响是重启容器所有客户端需要重新登录。
+
+# 坑六，修复未合并小 BUG
+
+在写完这篇踩坑的时候，Anki 桌面版可能出现 `NoneType object is not subscriptable` 的问题，由于 [未合并](https://github.com/ankicommunity/anki-sync-server/pull/83/commits/7d8c22c86d5d008c3321e488e6c5781991fa1d47)，所以只能手动修复。
+
+好在是 python，所以直接修改源码并挂载到容器里面即可。
+
+文件在容器内的 `/opt/ankisyncd/ankisyncd/sync_app.py`，我们 [加上 commit 内容](https://github.com/ankicommunity/anki-sync-server/pull/83/commits/7d8c22c86d5d008c3321e488e6c5781991fa1d47)，然后在容器内挂载这个文件即可。
 
