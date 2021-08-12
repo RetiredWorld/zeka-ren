@@ -53,15 +53,37 @@ export const ReactFC: FC<IProps> = ({ girlFriend }) => {
 由于基本只作为用户，而不作为包提供者，所以是使用泛型多于自己定义。
 
 
+# 为 document.get* 加上类型
+虽然奇怪 `document.getElementById` 这类 API 居然没有泛型，但是既然人家这样设计的，就只能遵守。
+
+```ts
+const ele = document.getElementById('canvas') as HTMLCanvasElement;
+```
+
+下面的写法是不存在的：
+
+```ts
+const ele = document.getElementById<HTMLCanvasElement>('some-id');
+```
+
+但是有下面的等价写法（angle-bracket）：
+
+```ts
+const ele2 = <HTMLCanvasElement>document.getElementById('some-id');
+```
+
+这种写法可能在 `tsx` 文件中眼花，因为标签太多了。
+
 
 # 强转类型
 
+一般是这样用的：
+
 ```ts
-const ele = document.getElementById('some-id') as HTMLCanvasElement;
-ele.getContext('2d');
-// I prefer angle-bracket syntax
 const ele2 = <HTMLCanvasElement>document.getElementById('some-id');
 ```
+
+但是我们可以：
 
 ~~指鹿为马~~
 
