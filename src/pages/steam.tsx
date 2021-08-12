@@ -3,8 +3,8 @@ import React, { Dispatch, useEffect, useState } from 'react';
 import SteamComponent from '../components/page/steam/steam-component';
 import { IMetaInfo } from '../layout/meta';
 
-const STEAM_ALL_URL = 'https://steaminfo.mmx223223.workers.dev';
-const STEAM_RECENT_URL = 'https://steaminfo.mmx223223.workers.dev?type=recent';
+const STEAM_ALL_URL = 'https://api.zeka.cloud/steam/';
+const STEAM_RECENT_URL = 'https://api.zeka.cloud/steam/?type=recent';
 
 const fetchData = (url: string, setter: Dispatch<ISteamData>) => {
     fetch(url, {
@@ -50,12 +50,23 @@ const SteamPage: React.FC = () => {
         fetchData(STEAM_RECENT_URL, recentSetData);
     }, []);
 
+    let recentStatus = <p>最近（加载中）</p>;
+
+    if (recentGames) {
+        if (recentGames.length !== 0) {
+            recentStatus = <p>最近（{recentGames.length}）</p>;
+        }
+    } else {
+        recentStatus = <p>最近没有在玩游戏</p>;
+    }
+
+
     return (<div className="my-steam">
             <div className="my-steam__intro">
-                <p>最近({(recentGames.length === 0)?'加载中':recentGames.length})</p>
+                {recentStatus}
             </div>
             <div className="my-steam-part my-steam-recently">
-                {recentGames.map(game=>{
+                {recentGames?.map(game=>{
                     return (<SteamComponent key={game.appid} appId={game.appid} name={game.name} time={game.playtime_forever} recentTime={game.playtime_2weeks} />);
                 })}
             </div>
